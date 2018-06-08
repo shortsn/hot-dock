@@ -6,7 +6,6 @@
     "target": "es5",
     "baseUrl": "",
     "types": [
-      "jasmine",
       "node"
     ]
   },

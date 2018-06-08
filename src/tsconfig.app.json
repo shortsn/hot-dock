@@ -11,6 +11,8 @@
     "**/*.spec.ts",
     "dist",
     "app-builds",
-    "node_modules"
+    "node_modules",
+    "setupJest.ts",
+    "jestGlobalMocks.ts"
   ]
 }

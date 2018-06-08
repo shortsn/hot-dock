@@ -1,4 +1,4 @@
 import 'jest-preset-angular';
 import './jestGlobalMocks'; // browser mocks globally available for every test
 
-Error.stackTraceLimit = 1;
+Error.stackTraceLimit = 2;
