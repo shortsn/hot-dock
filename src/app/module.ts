@@ -24,6 +24,7 @@ import { IAppState } from './store/model';
 import rootReducer from './store/reducer';
 import { compose } from 'redux';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
+import { routerSelector } from './store/location/selectors';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -77,8 +78,6 @@ export class AppModule {
     // other store enhancers if any
 
     ngRedux.configureStore(rootReducer, enhancer);
-    ngReduxRouter.initialize(
-      state => state.location.router
-    );
+    ngReduxRouter.initialize(routerSelector);
   }
 }
