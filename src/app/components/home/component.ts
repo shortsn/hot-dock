@@ -5,8 +5,8 @@ import { IAppState } from '../../store/model';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './component.html',
+  styleUrls: ['./component.scss']
 })
 export class HomeComponent implements OnInit {
 

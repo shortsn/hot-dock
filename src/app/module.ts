@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './routing.module';
 
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -15,8 +15,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { WebviewDirective } from './directives/webview.directive';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { AppComponent } from './component';
+import { HomeComponent } from './components/home/component';
 
 // Redux
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
