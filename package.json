@@ -1,12 +1,7 @@
 {
   "name": "angular-electron",
-  "version": "3.4.1",
-  "description": "Angular 5 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
-  "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
-  },
+  "version": "0.0.1",
+  "description": "",
   "keywords": [
     "angular",
     "angular 5",
