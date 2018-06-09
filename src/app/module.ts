@@ -7,7 +7,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './routing.module';
 
 // NG Translate
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { WebviewDirective } from './directives/webview.directive';
@@ -19,9 +19,12 @@ import { HomeComponent } from './components/home/component';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import { IAppState } from './store/model';
 import rootReducer from './store/reducer';
-import { compose } from 'redux';
+import { compose, applyMiddleware } from 'redux';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { routerSelector } from './store/location/selectors';
+import { SessionEpics } from './store/session/epics';
+import { createEpicMiddleware } from 'redux-observable';
+import { LanguageActions } from './store/session/actions';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -45,11 +48,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgReduxModule,
     NgReduxRouterModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    SessionEpics
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter) {
+  constructor(
+    ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter,
+    sessionEpics: SessionEpics, translate: TranslateService
+  ) {
 
     const composeEnhancers = typeof window === 'object' && (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       ? (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -67,14 +75,16 @@ export class AppModule {
             }
             // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
           })
-        : compose;
+      : compose;
 
-    const enhancer = composeEnhancers();
-    // applyMiddleware(...middleware),
-
-    // other store enhancers if any
+    const enhancer = composeEnhancers(
+      applyMiddleware(
+        createEpicMiddleware(sessionEpics.setLanguage)
+      )
+    );
 
     ngRedux.configureStore(rootReducer, enhancer);
     ngReduxRouter.initialize(routerSelector);
+    ngRedux.dispatch(LanguageActions.SET_LANGUAGE('de'));
   }
 }

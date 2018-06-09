@@ -64,9 +64,11 @@
     "npm-run-all": "4.1.2",
     "npx": "^10.2.0",
     "redux": "^3.7.2",
+    "redux-observable": "^0.19.0",
     "rxjs": "5.5.8",
     "tslint": "5.9.1",
     "typescript": "2.6.2",
+    "unionize": "^1.0.1",
     "wait-on": "2.1.0",
     "webpack-bundle-analyzer": "^2.13.1",
     "zone.js": "0.8.26"
