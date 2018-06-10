@@ -36,7 +36,7 @@
       "protocol": "inspector",
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
       "runtimeArgs": ["--remote-debugging-port=9223"],
-      "program": "${workspaceRoot}/main.js",
+      "program": "${workspaceRoot}/dist/electron/main.js",
       "windows": {
         "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
       },

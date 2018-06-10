@@ -1,9 +1,8 @@
-import { ISession, Language } from './model';
+import { ISession } from './model';
 import { Action, Reducer, combineReducers } from 'redux';
-import { AppConfig } from '../../config';
 import { LanguageActions } from './actions';
 
-const config = (state, action: Action) => AppConfig;
+const config = (state = null, action: Action) => state;
 
 const language = (state = '', action) =>
   LanguageActions.match({
