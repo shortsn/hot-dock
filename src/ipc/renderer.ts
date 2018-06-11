@@ -2,8 +2,14 @@ import { IpcRenderer } from 'electron';
 import { getResponseChannels, getRendererResponseChannels } from './util';
 
 export interface BetterIpc {
-  callMain(channel: string, data): Promise<{}>;
-  answerMain(channel: string, callback: Function): void;
+  /**
+   * @example
+   * iconst answer = await ipc.callMain('test.log', 'message');
+   * @param channel
+   * @param data
+   */
+  callMain<TIn, TOut>(channel: string, data: TIn): Promise<TOut>;
+  answerMain<TIn, TOut>(channel: string, callback: (data: TIn) => TOut): void;
 }
 
 const ipc: IpcRenderer & BetterIpc = window.ipcRenderer as any;

@@ -2,9 +2,18 @@ import { ipcMain, BrowserWindow, IpcMain } from 'electron';
 import { getRendererResponseChannels, getResponseChannels } from './util';
 
 export interface BetterIpc {
-  callRenderer(window, channel: string, data): Promise<{}>;
-  answerRenderer(channel: string, callback: Function);
-  sendToRenderers(channel: string, data);
+  callRenderer<TIn, TOut>(window: BrowserWindow, channel: string, data: TIn): Promise<TOut>;
+  /**
+   * @example
+   * ipc.answerRenderer('test.log', (data: string) => {
+   *   console.log(data);
+   *   return 'logged on main';
+   * });
+   * @param channel
+   * @param callback
+   */
+  answerRenderer<TIn, TOut>(channel: string, callback: (data: TIn, window: BrowserWindow) => TOut): void;
+  sendToRenderers<TData>(channel: string, data: TData): void;
 }
 
 const ipc: IpcMain & BetterIpc = ipcMain as any;
