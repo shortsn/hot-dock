@@ -77,3 +77,12 @@ import 'zone.js/dist/zone-mix';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+import { IpcRenderer, BrowserWindow } from 'electron';
+
+declare global {
+  interface Window {
+    ipcRenderer: IpcRenderer;
+    getCurrentWindow(): BrowserWindow;
+  }
+}

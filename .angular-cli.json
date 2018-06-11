@@ -8,6 +8,7 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
+        "electron/preload.js",
         "assets",
         "favicon.ico",
         "favicon.png",
