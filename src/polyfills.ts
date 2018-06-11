@@ -84,5 +84,6 @@ declare global {
   interface Window {
     ipcRenderer: IpcRenderer;
     getCurrentWindow(): BrowserWindow;
+    getGlobal(name: string): any;
   }
 }

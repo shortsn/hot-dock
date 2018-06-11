@@ -1,6 +1,10 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './src/app/store/reducer';
+import { forwardToRenderer, replayActionMain } from './src/ipc/redux/main';
+import { LanguageActions } from './src/app/store/session/actions';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -11,6 +15,15 @@ try {
 } catch {
   console.log('asar');
 }
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(
+    forwardToRenderer, // IMPORTANT! This goes last
+  ),
+);
+
+replayActionMain(store);
 
 function createWindow() {
 

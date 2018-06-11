@@ -1,6 +1,9 @@
 import { ipcMain, BrowserWindow, IpcMain } from 'electron';
 import { getRendererResponseChannels, getResponseChannels } from './util';
 
+/**
+ * based on https://github.com/sindresorhus/electron-better-ipc
+ */
 export interface BetterIpc {
   callRenderer<TIn, TOut>(window: BrowserWindow, channel: string, data: TIn): Promise<TOut>;
   /**

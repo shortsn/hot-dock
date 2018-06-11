@@ -1,6 +1,9 @@
 import { IpcRenderer } from 'electron';
 import { getResponseChannels, getRendererResponseChannels } from './util';
 
+/**
+ * based on https://github.com/sindresorhus/electron-better-ipc
+ */
 export interface BetterIpc {
   /**
    * @example

@@ -4,7 +4,7 @@ import { LanguageActions } from './actions';
 
 const config = (state = null, action: Action) => state;
 
-const language = (state = '', action) =>
+const language = (state = 'en', action) =>
   LanguageActions.match({
     SET_LANGUAGE: lang => lang,
   }, _ => state)(action);
