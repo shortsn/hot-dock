@@ -10,8 +10,6 @@ import { AppRoutingModule } from './routing.module';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { WebviewDirective } from './directives/webview.directive';
-
 import { AppComponent } from './component';
 import { HomeComponent } from './components/home/component';
 
@@ -31,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, WebviewDirective],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     FormsModule,
