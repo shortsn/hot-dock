@@ -24,8 +24,6 @@ import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { routerSelector } from './store/location/selectors';
 import { SessionEpics } from './store/session/epics';
 import { createEpicMiddleware } from 'redux-observable';
-import { LanguageActions } from './store/session/actions';
-import { getInitialStateRenderer, forwardToMain, replayActionRenderer } from '../ipc/redux/renderer';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -80,15 +78,13 @@ export class AppModule {
 
     const enhancer = composeEnhancers(
       applyMiddleware(
-        forwardToMain, // IMPORTANT! This goes first,
         createEpicMiddleware(sessionEpics.setLanguage)
       )
     );
 
-    const initialState = getInitialStateRenderer<IAppState>();
+    ngRedux.configureStore(rootReducer, enhancer);
+    const initialState = ngRedux.getState();
     translate.setDefaultLang(initialState.session.language);
-    ngRedux.configureStore(rootReducer, initialState, null, enhancer);
-    replayActionRenderer(ngRedux);
 
     ngReduxRouter.initialize(routerSelector);
   }
