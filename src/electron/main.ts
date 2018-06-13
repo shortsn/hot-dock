@@ -1,8 +1,9 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, Tray } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import { createTray } from './tray';
 
-let win, serve;
+let win: BrowserWindow, serve: boolean, tray: Tray;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
@@ -14,8 +15,7 @@ try {
 
 function createWindow() {
 
-  const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  const size = screen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
   win = new BrowserWindow({
@@ -55,7 +55,14 @@ try {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
-  app.on('ready', createWindow);
+  app.on('ready', () => {
+    tray = createTray(
+      { role: 'toggleDevTools' },
+      { type: 'separator' },
+      { role: 'quit' }
+    );
+    createWindow();
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
