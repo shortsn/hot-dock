@@ -16,27 +16,20 @@ export function getInitialStateRenderer<TState>(): TState {
  * based on https://github.com/hardchor/electron-redux
  */
 export const replayActionRenderer = (store) =>
-  ipc.on('redux-action', (event, payload) => store.dispatch(payload));
+  ipc.on('redux-action', (event, payload) =>
+    store.dispatch(payload)
+  );
 
 /**
  * based on https://github.com/hardchor/electron-redux
  */
 export const forwardToMain = store => next => (action) => {
-  if (!isAction(action)) { return next(action); }
-
-  if (
-    action.type.substr(0, 2) !== '@@'
-    && action.type.substr(0, 10) !== 'redux-form'
-    && (
-      !action.meta
-      || !action.meta.scope
-      || action.meta.scope !== 'local'
-    )
-  ) {
-    ipc.send('redux-action', action);
-    // stop action in-flight
-    return;
+  if (!isAction(action) ||
+      action.type.substr(0, 2) === '@@' ||
+      action.type.substr(0, 10) === 'redux-form' ||
+      action.meta && action.meta.scope === 'local') {
+    return next(action);
   }
-
-  return next(action);
+  // stop action in-flight
+  ipc.send('redux-action', action);
 };

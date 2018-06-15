@@ -14,7 +14,7 @@ import { AppComponent } from './component';
 import { HomeComponent } from './components/home/component';
 
 // Redux
-import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 import { IAppState } from './store/model';
 import rootReducer from './store/reducer';
 import { compose, applyMiddleware } from 'redux';
@@ -22,6 +22,7 @@ import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { routerSelector } from './store/location/selectors';
 import { SessionEpics } from './store/session/epics';
 import { createEpicMiddleware } from 'redux-observable';
+import { forwardToMain, getInitialStateRenderer, replayActionRenderer } from '../ipc/redux/renderer';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -52,38 +53,25 @@ export function HttpLoaderFactory(http: HttpClient) {
 })
 export class AppModule {
   constructor(
-    ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter,
+    ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter, devTools: DevToolsExtension,
     sessionEpics: SessionEpics, translate: TranslateService
   ) {
 
-    const composeEnhancers = typeof window === 'object' && (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-            features: {
-              pause: false, // start/pause recording of dispatched actions
-              lock: false, // lock/unlock dispatching actions and side effects
-              persist: false, // persist states on page reloading
-              export: false, // export history of actions in a file
-              import: false, // 'custom', // import history of actions from a file
-              jump: false, // jump back and forth (time travelling)
-              skip: false, // skip (cancel) actions
-              reorder: false, // drag and drop actions in the history list
-              dispatch: false, // dispatch custom actions or action creators
-              test: false, // generate tests for the selected actions
-            }
-            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-          })
-      : compose;
+    let enhancers = [];
 
-    const enhancer = composeEnhancers(
-      applyMiddleware(
-        createEpicMiddleware(sessionEpics.setLanguage)
-      )
-    );
+    if (devTools.isEnabled()) {
+      enhancers = [ ...enhancers, devTools.enhancer() ];
+    }
 
-    ngRedux.configureStore(rootReducer, enhancer);
-    const initialState = ngRedux.getState();
+    const middlewares = [
+      forwardToMain, // IMPORTANT! This goes first,
+      createEpicMiddleware(sessionEpics.setLanguage)
+    ];
+
+    const initialState = getInitialStateRenderer<IAppState>();
+    ngRedux.configureStore(rootReducer, initialState, middlewares, enhancers);
+    replayActionRenderer(ngRedux);
     translate.setDefaultLang(initialState.session.language);
-
     ngReduxRouter.initialize(routerSelector);
   }
 }

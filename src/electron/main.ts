@@ -2,6 +2,9 @@ import { app, BrowserWindow, screen, Tray } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import { createTray } from './tray';
+import { replayActionMain, forwardToRenderer } from '../ipc/redux/main';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import session from '../app/store/session/reducer';
 
 let win: BrowserWindow, serve: boolean, tray: Tray;
 const args = process.argv.slice(1);
@@ -13,8 +16,19 @@ try {
   console.log('asar');
 }
 
-function createWindow() {
+const rootReducer = combineReducers({
+  session
+});
 
+const store = createStore(
+  rootReducer,
+  applyMiddleware(
+    forwardToRenderer // IMPORTANT! This goes last
+  )
+);
+replayActionMain(store);
+
+function createWindow() {
   const size = screen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
@@ -26,20 +40,21 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       sandbox: true,
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, 'preload.js')
     }
   });
 
   if (serve) {
     win.loadURL('http://localhost:4200');
   } else {
-    win.loadURL(url.format({
-      pathname: path.join(__dirname, '../index.html'),
-      protocol: 'file:',
-      slashes: true
-    }));
+    win.loadURL(
+      url.format({
+        pathname: path.join(__dirname, '../index.html'),
+        protocol: 'file:',
+        slashes: true
+      })
+    );
   }
-
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -51,7 +66,6 @@ function createWindow() {
 }
 
 try {
-
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
@@ -80,7 +94,6 @@ try {
       createWindow();
     }
   });
-
 } catch (e) {
   // Catch Error
   // throw e;
