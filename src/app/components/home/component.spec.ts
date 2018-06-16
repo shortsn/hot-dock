@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ClarityModule } from '@clr/angular';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -11,7 +12,8 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       imports: [
-        TranslateModule.forRoot()
+        TranslateModule.forRoot(),
+        ClarityModule
       ]
     })
     .compileComponents();
