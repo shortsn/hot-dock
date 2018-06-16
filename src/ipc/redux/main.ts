@@ -22,7 +22,7 @@ export function replayActionMain(store) {
 /**
  * based on https://github.com/hardchor/electron-redux
  */
-export const forwardToRenderer = () => next => (action) => {
+export const forwardToRenderer = () => next => action => {
   if (!isAction(action) || (action.meta && action.meta.scope === 'local')) {
     return next(action);
   }

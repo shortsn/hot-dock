@@ -1,7 +1,9 @@
 import { ISession } from './session/model';
 import { ILocation } from './location/model';
+import { IData } from './data/model';
 
 export interface IAppState {
-  session: ISession;
+  data: IData;
   location: ILocation;
+  session: ISession;
 }

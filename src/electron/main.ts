@@ -2,8 +2,13 @@ import { app, BrowserWindow, screen, Tray } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import { createTray } from './tray';
+
+// redux
 import { replayActionMain, forwardToRenderer } from '../ipc/redux/main';
+import { createDockerMiddleware } from './docker/middleware';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
+
+import data from '../app/store/data/reducer';
 import session from '../app/store/session/reducer';
 
 let win: BrowserWindow, serve: boolean, tray: Tray;
@@ -17,12 +22,14 @@ try {
 }
 
 const rootReducer = combineReducers({
+  data,
   session
 });
 
 const store = createStore(
   rootReducer,
   applyMiddleware(
+    createDockerMiddleware(),
     forwardToRenderer // IMPORTANT! This goes last
   )
 );
