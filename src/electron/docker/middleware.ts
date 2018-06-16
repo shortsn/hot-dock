@@ -7,7 +7,7 @@ export const createDockerMiddleware = (options?: Docker.DockerOptions) => {
   return store => next => action => {
 
     if (DockerActions.is.FETCH_DOCKER_IMAGES(action)) {
-      docker.listImages().then(result => store.dispatch(DockerActions.SET_DOCKER_IMAGES(result)));
+      docker.listImages().then(result => store.dispatch(DockerActions.UPDATE_DOCKER_IMAGES(result)));
     }
 
     return next(action);

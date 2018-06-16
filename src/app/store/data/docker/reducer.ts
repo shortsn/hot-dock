@@ -6,7 +6,7 @@ const images = (state = [], action) =>
   DockerActions.match({
 
     FETCH_DOCKER_IMAGES: _ => [],
-    SET_DOCKER_IMAGES: items => items,
+    UPDATE_DOCKER_IMAGES: items => items,
 
   }, _ => state)(action);
 

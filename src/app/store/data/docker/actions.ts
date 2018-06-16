@@ -4,6 +4,6 @@ import { ImageInfo } from 'dockerode';
 export const DockerActions = unionize({
 
   FETCH_DOCKER_IMAGES: ofType(),
-  SET_DOCKER_IMAGES: ofType<ImageInfo[]>()
+  UPDATE_DOCKER_IMAGES: ofType<ImageInfo[]>()
 
 }, 'type', 'payload');

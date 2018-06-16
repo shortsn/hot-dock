@@ -2,7 +2,7 @@ import { Action } from 'redux';
 
 export interface IpcAction extends Action {
   payload?: any;
-  error?: any;
+  error?: true;
   meta?: any;
 }
 
