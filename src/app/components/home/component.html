@@ -1,4 +1,4 @@
-<div class="container">
+<div>
   <h1 class="title">
     {{ 'PAGES.HOME.TITLE' | translate }}
   </h1>
@@ -7,6 +7,8 @@
 
   <button (click)="changeLanguage('de')">de</button>
   <button (click)="changeLanguage('en')">en</button>
+
+  <clr-icon shape="floppy"></clr-icon>
 
   <br>
   <div>{{ router$ | async }}</div>

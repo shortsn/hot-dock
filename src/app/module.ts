@@ -23,6 +23,15 @@ import { SessionEpics } from './store/session/epics';
 import { createEpicMiddleware } from 'redux-observable';
 import { initializeStore } from '../environments/environment';
 
+import { ClarityModule } from '@clr/angular';
+
+import { ClarityIcons } from '@clr/icons';
+import { ClrShapeFloppy } from '@clr/icons/shapes/technology-shapes';
+
+ClarityIcons.add({
+  floppy: ClrShapeFloppy
+});
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -32,6 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
+    ClarityModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
