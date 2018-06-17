@@ -7,3 +7,6 @@ export const hasSubNavSelector = (state: IAppState) => subNavSelector(state).len
 
 export const sideNavSelector = (state: IAppState) => layoutSelector(state).sideNav;
 export const hasSideNavSelector = (state: IAppState) => sideNavSelector(state).length > 0;
+
+export const errorMessageSelector = (state: IAppState) => layoutSelector(state).error;
+export const hasErrorMessageSelector = (state: IAppState) => errorMessageSelector(state).length > 0;

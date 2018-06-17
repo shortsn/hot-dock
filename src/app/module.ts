@@ -23,6 +23,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import { initializeStore } from '../environments/environment';
 
 import { CoreModule } from './components/core/module';
+import { LayoutEpics } from './store/controls/layout/epics';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -50,18 +51,21 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgReduxRouterModule.forRoot()
   ],
   providers: [
-    SessionEpics
+    SessionEpics,
+    LayoutEpics
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(
     ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter,
-    sessionEpics: SessionEpics, translate: TranslateService
+    sessionEpics: SessionEpics, layoutEpics: LayoutEpics,
+    translate: TranslateService
   ) {
 
     const middlewares = [
-      createEpicMiddleware(sessionEpics.setLanguage)
+      createEpicMiddleware(sessionEpics.setLanguage),
+      createEpicMiddleware(layoutEpics.showError)
     ];
 
     const initialState = initializeStore(ngRedux, rootReducer, middlewares, []);

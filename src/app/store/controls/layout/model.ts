@@ -5,6 +5,7 @@ export interface INavItem {
 }
 
 export interface ILayout {
+  error: string;
   subNav: INavItem[];
   sideNav: INavItem[];
 }

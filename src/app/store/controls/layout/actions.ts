@@ -7,4 +7,6 @@ export const LayoutActions = unionize({
   SET_SUBNAV: ofType<INavItem[]>(),
   SET_SIDENAV: ofType<INavItem[]>(),
 
+  SET_ERROR_MESSAGE: ofType<string>(),
+
 }, 'type', 'payload');

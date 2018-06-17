@@ -3,8 +3,7 @@ import { ActionsObservable } from 'redux-observable';
 import { Action } from 'redux';
 import { TranslateService } from '@ngx-translate/core';
 
-import { filter, tap, map, startWith } from 'rxjs/operators';
-import { languageSelector } from './selectors';
+import { filter, tap } from 'rxjs/operators';
 import { LanguageActions } from './actions';
 
 @Injectable()

@@ -8,5 +8,10 @@
     "selectColumns": "Select columns",
     "selectAll": "Select all",
     "noEntries": "No entries found"
+  },
+  "error": {
+    "code": {
+      "ECONNREFUSED": "Docker service is not available."
+    }
   }
 }

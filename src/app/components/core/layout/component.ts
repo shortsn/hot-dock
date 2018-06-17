@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { INavItem } from '../../../store/controls/layout/model';
 import {
   subNavSelector, hasSubNavSelector,
-  sideNavSelector, hasSideNavSelector
+  sideNavSelector, hasSideNavSelector, errorMessageSelector, hasErrorMessageSelector
 } from '../../../store/controls/layout/selectors';
 import { LanguageActions } from '../../../store/session/actions';
 
@@ -20,6 +20,9 @@ export class LayoutComponent {
 
   @select(sideNavSelector) sideNav$: Observable<INavItem[]>;
   @select(hasSideNavSelector) hasSideNav$: Observable<boolean>;
+
+  @select(errorMessageSelector) errorMessage$: Observable<string>;
+  @select(hasErrorMessageSelector) hasErrorMessage$: Observable<boolean>;
 
   @dispatch() langGer = () => LanguageActions.SET_LANGUAGE('de');
   @dispatch() langEn = () => LanguageActions.SET_LANGUAGE('en');
