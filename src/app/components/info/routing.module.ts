@@ -4,7 +4,8 @@ import { HomeComponent } from './home/component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'images', pathMatch: 'full' },
-  { path: 'images', component: HomeComponent }
+  { path: 'images', component: HomeComponent },
+  { path: 'containers', component: HomeComponent }
 ];
 
 @NgModule({

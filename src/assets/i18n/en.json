@@ -3,5 +3,9 @@
       "HOME": {
           "TITLE": "worx"
       }
+  },
+  "nav": {
+    "images": "Images",
+    "containers": "Containers"
   }
 }

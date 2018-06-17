@@ -39,8 +39,8 @@
 
   <nav class="subnav">
     <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link nav-icon" routerLink="/info/images" routerLinkActive="active">Images</a>
+      <li class="nav-item" *ngFor="let subNav of subNav$ | async as subNavs">
+        <a class="nav-link nav-icon" [routerLink]="subNav.link" routerLinkActive="active">{{ subNav.key | translate }}</a>
       </li>
     </ul>
   </nav>

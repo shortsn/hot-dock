@@ -8,6 +8,7 @@ import { LanguageActions } from '../../../store/session/actions';
 import { DockerActions } from '../../../store/data/docker/actions';
 import { dockerImagesSelector } from '../../../store/data/docker/selectors';
 import { ImageInfo } from 'dockerode';
+import { LayoutActions } from '../../../store/controls/layout/actions';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +22,15 @@ export class HomeComponent implements OnInit {
   @dispatch() changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
   @dispatch() fetchDockerImages = () => DockerActions.FETCH_DOCKER_IMAGES({});
 
+  @dispatch() setNavItems = () => LayoutActions.SET_SUBNAV([
+    { key: 'nav.images', link: '/info/images' },
+    { key: 'nav.containers', link: '/info/containers' }
+  ])
+
   constructor() { }
 
   ngOnInit() {
+    this.setNavItems();
     this.fetchDockerImages();
   }
 
