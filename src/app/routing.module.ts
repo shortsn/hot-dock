@@ -1,4 +1,3 @@
-import { HomeComponent } from './components/home/component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './components/layout/component';
@@ -6,9 +5,8 @@ import { LayoutComponent } from './components/layout/component';
 const routes: Routes = [
   { path: '', component: LayoutComponent, children:
     [
-      { path: '', redirectTo: 'system', pathMatch: 'full' },
-      { path: 'system', component: HomeComponent },
-      { path: 'test', component: HomeComponent }
+      { path: '', redirectTo: 'info', pathMatch: 'full' },
+      { path: 'info', loadChildren: 'app/components/info/module#InfoModule' }
     ]
   },
 ];

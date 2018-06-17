@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { select, dispatch } from '@angular-redux/store';
-import { routerSelector } from '../../store/location/selectors';
-import { Language } from '../../store/session/model';
-import { LanguageActions } from '../../store/session/actions';
+import { routerSelector } from '../../../store/location/selectors';
+import { Language } from '../../../store/session/model';
+import { LanguageActions } from '../../../store/session/actions';
 
-import { DockerActions } from '../../store/data/docker/actions';
-import { dockerImagesSelector } from '../../store/data/docker/selectors';
+import { DockerActions } from '../../../store/data/docker/actions';
+import { dockerImagesSelector } from '../../../store/data/docker/selectors';
 import { ImageInfo } from 'dockerode';
 
 @Component({

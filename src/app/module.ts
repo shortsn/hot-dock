@@ -11,7 +11,6 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './component';
-import { HomeComponent } from './components/home/component';
 
 // Redux
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
@@ -41,7 +40,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LayoutComponent
   ],
   imports: [
