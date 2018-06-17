@@ -1,11 +1,11 @@
 {
-  "PAGES": {
-      "HOME": {
-          "TITLE": "worx"
-      }
-  },
   "nav": {
     "images": "Images",
     "containers": "Containers"
+  },
+  "datagrid": {
+    "pagination": "{{first}} - {{last}} of {{total}}",
+    "selectColumns": "Select columns",
+    "selectAll": "Select all"
   }
 }
