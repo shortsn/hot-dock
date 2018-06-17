@@ -1,4 +1,4 @@
-import isAction from './isAction';
+import { isAction } from './isAction';
 import ipc from '../renderer';
 
 /**
