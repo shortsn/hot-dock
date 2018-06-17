@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'test', component: HomeComponent }
+  { path: '', redirectTo: 'images', pathMatch: 'full' },
+  { path: 'images', component: HomeComponent }
 ];
 
 @NgModule({

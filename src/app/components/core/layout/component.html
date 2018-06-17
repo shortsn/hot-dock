@@ -22,10 +22,10 @@
     </div>
 
     <div class="header-nav">
-      <a class="nav-link nav-icon">
-        <clr-icon shape="cloud"></clr-icon>
+      <a class="nav-link nav-icon" routerLink="/info" routerLinkActive="active">
+        <clr-icon shape="info-standard"></clr-icon>
       </a>
-      <a class="active nav-link nav-icon">
+      <a class="nav-link nav-icon" routerLink="/test" routerLinkActive="active">
         <clr-icon shape="folder"></clr-icon>
       </a>
     </div>
@@ -40,16 +40,7 @@
   <nav class="subnav">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Management</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Cloud</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Tenants</a>
+        <a class="nav-link nav-icon" routerLink="/info/images" routerLinkActive="active">Images</a>
       </li>
     </ul>
   </nav>

@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: '', component: LayoutComponent, children:
     [
       { path: '', redirectTo: 'info', pathMatch: 'full' },
-      { path: 'info', loadChildren: 'app/components/info/module#InfoModule' }
+      { path: 'info', loadChildren: 'app/components/info/module#InfoModule' },
+      { path: 'test', loadChildren: 'app/components/info/module#InfoModule' }
     ]
   },
 ];
