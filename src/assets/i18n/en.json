@@ -6,6 +6,7 @@
   "datagrid": {
     "pagination": "{{first}} - {{last}} of {{total}}",
     "selectColumns": "Select columns",
-    "selectAll": "Select all"
+    "selectAll": "Select all",
+    "noEntries": "No entries found"
   }
 }

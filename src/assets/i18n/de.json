@@ -1,7 +1,12 @@
 {
-  "PAGES": {
-      "HOME": {
-          "TITLE": "funzt"
-      }
+  "nav": {
+    "images": "Images",
+    "containers": "Containers"
+  },
+  "datagrid": {
+    "pagination": "{{first}} - {{last}} von {{total}}",
+    "selectColumns": "Spalten auswählen",
+    "selectAll": "Alle auswählen",
+    "noEntries": "Keine Einträge gefunden"
   }
 }

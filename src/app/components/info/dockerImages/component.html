@@ -1,3 +1,5 @@
+<h1>{{ 'nav.images' | translate }}</h1>
+
 <clr-datagrid>
   <clr-dg-column [clrDgField]="'Id'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
@@ -28,7 +30,7 @@
 
   <clr-dg-row *clrDgItems="let dockerImage of dockerImages$ | async">
     <clr-dg-action-overflow>
-        <button class="action-item">Action</button>
+      <button class="action-item">Action</button>
     </clr-dg-action-overflow>
     <clr-dg-cell>{{ dockerImage.Id }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.ParentId }}</clr-dg-cell>
@@ -50,7 +52,8 @@
     </clr-dg-column-toggle>
 
     <clr-dg-pagination #pagination [clrDgPageSize]="10">
-      {{ 'datagrid.pagination' | translate:{ first: pagination.firstItem +1, last: pagination.lastItem + 1, total: pagination.totalItems} }}
+      {{ 'datagrid.pagination' | translate:{ first: pagination.firstItem +1, last: pagination.lastItem + 1, total: pagination.totalItems}
+      }}
     </clr-dg-pagination>
   </clr-dg-footer>
 
