@@ -6,4 +6,5 @@ export interface INavItem {
 
 export interface ILayout {
   subNav: INavItem[];
+  sideNav: INavItem[];
 }

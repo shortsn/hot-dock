@@ -1,10 +1,11 @@
 import { LayoutActions } from './actions';
 import { ILayout } from './model';
 
-const layout = (state: ILayout = { subNav: [] }, action) =>
+const layout = (state: ILayout = { subNav: [], sideNav: [] }, action) =>
   LayoutActions.match({
 
-    SET_SUBNAV: subNav => ({ ...state, subNav })
+    SET_SUBNAV: subNav => ({ ...state, subNav }),
+    SET_SIDENAV: sideNav => ({ ...state, sideNav })
 
   }, _ => state)(action);
 

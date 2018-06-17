@@ -37,61 +37,25 @@
     </div>
   </header>
 
-  <ng-container *ngIf="subNav$ | async as subNavs">
-    <nav *ngIf="subNavs.length > 0" class="subnav">
-      <ul class="nav">
-        <li *ngFor="let subNav of subNavs" class="nav-item">
-          <a class="nav-link nav-icon" [routerLink]="subNav.link" routerLinkActive="active">{{ subNav.key | translate }}</a>
-        </li>
-      </ul>
-    </nav>
-  </ng-container>
+  <nav *ngIf="hasSubNav$ | async" class="subnav">
+    <ul class="nav">
+      <li *ngFor="let subNav of subNav$ | async as subNavs" class="nav-item">
+        <a class="nav-link nav-icon" [routerLink]="subNav.link" routerLinkActive="active">{{ subNav.key | translate }}</a>
+      </li>
+    </ul>
+  </nav>
 
   <div class="content-container">
     <div class="content-area">
       <router-outlet></router-outlet>
     </div>
-    <nav class="sidenav">
+
+    <nav *ngIf="hasSideNav$ | async" class="sidenav">
       <section class="sidenav-content">
-        <a class="nav-link active">
-          Nav Element 1
-        </a>
-        <a class="nav-link">
-          Nav Element 2
-        </a>
-        <section class="nav-group collapsible">
-          <input id="tabexample1" type="checkbox">
-          <label for="tabexample1">Collapsible Nav Element</label>
-          <ul class="nav-list">
-            <li>
-              <a class="nav-link">Link 1</a>
-            </li>
-            <li>
-              <a class="nav-link">Link 2</a>
-            </li>
-          </ul>
-        </section>
         <section class="nav-group">
-          <input id="tabexample2" type="checkbox">
-          <label for="tabexample2">Default Nav Element</label>
           <ul class="nav-list">
-            <li>
-              <a class="nav-link">Link 1</a>
-            </li>
-            <li>
-              <a class="nav-link">Link 2</a>
-            </li>
-            <li>
-              <a class="nav-link active">Link 3</a>
-            </li>
-            <li>
-              <a class="nav-link">Link 4</a>
-            </li>
-            <li>
-              <a class="nav-link">Link 5</a>
-            </li>
-            <li>
-              <a class="nav-link">Link 6</a>
+            <li *ngFor="let sideNav of sideNav$ | async as sideNavs">
+              <a class="nav-link" [routerLink]="sideNav.link" routerLinkActive="active">{{ sideNav.key | translate }}</a>
             </li>
           </ul>
         </section>
