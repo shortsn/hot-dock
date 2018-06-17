@@ -27,6 +27,7 @@ import { ClarityModule } from '@clr/angular';
 
 import { ClarityIcons } from '@clr/icons';
 import { ClrShapeFloppy } from '@clr/icons/shapes/technology-shapes';
+import { LayoutComponent } from './components/layout/component';
 
 ClarityIcons.add({
   floppy: ClrShapeFloppy
@@ -38,7 +39,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LayoutComponent
+  ],
   imports: [
     BrowserModule,
     ClarityModule,
