@@ -12,7 +12,10 @@ export function initializeStore<TState>(
     ngRedux: NgRedux<TState>, reducer: Reducer<TState>, middlewares: Middleware[], enhancers: GenericStoreEnhancer[]
   ): TState {
 
-  const composeEnhancers = composeWithDevTools({ realtime: true, name: 'Renderer', port: 8000 });
+  const composeEnhancers = composeWithDevTools({
+    realtime: true,
+    port: 8000
+  });
 
   const enhancer = composeEnhancers(
     applyMiddleware(forwardToMain, ...middlewares),
