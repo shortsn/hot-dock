@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { select, dispatch } from '@angular-redux/store';
 import { routerSelector } from '../../../store/location/selectors';
@@ -13,6 +13,7 @@ import { LayoutActions } from '../../../store/controls/layout/actions';
 @Component({
   selector: 'app-home',
   templateUrl: './component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DockerImagesComponent implements OnInit {
 
