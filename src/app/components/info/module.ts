@@ -1,18 +1,14 @@
 import { HomeComponent } from './home/component';
-import { ClarityModule } from '@clr/angular';
-import { TranslateModule } from '@ngx-translate/core';
 import { InfoRoutingModule } from './routing.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CoreModule } from '../core/module';
 
 @NgModule({
   declarations: [
     HomeComponent,
   ],
   imports: [
-    CommonModule,
-    ClarityModule,
-    TranslateModule,
+    CoreModule,
     InfoRoutingModule
   ]
 })
