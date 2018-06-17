@@ -22,18 +22,20 @@ export class HomeComponent implements OnInit {
   @dispatch() changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
   @dispatch() fetchDockerImages = () => DockerActions.FETCH_DOCKER_IMAGES({});
 
-  @dispatch() setSubNavItems = () => LayoutActions.SET_SUBNAV([
-    { key: 'nav.images', link: '/info/images' },
-    { key: 'nav.containers', link: '/info/containers' }
-  ])
+  @dispatch() setNavItems = () => LayoutActions.SET_NAV({
+    subNav: [
+      { key: 'nav.images', link: '/info/images' },
+      { key: 'nav.containers', link: '/info/containers' }
+    ],
+    sideNav: []
+  })
 
   @dispatch() setSideNavItems = () => LayoutActions.SET_SIDENAV([]);
 
   constructor() { }
 
   ngOnInit() {
-    this.setSubNavItems();
-    this.setSideNavItems();
+    this.setNavItems();
     this.fetchDockerImages();
   }
 
