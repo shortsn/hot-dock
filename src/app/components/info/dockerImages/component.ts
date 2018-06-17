@@ -14,7 +14,7 @@ import { LayoutActions } from '../../../store/controls/layout/actions';
   selector: 'app-home',
   templateUrl: './component.html',
 })
-export class HomeComponent implements OnInit {
+export class DockerImagesComponent implements OnInit {
 
   @select(routerSelector) router$: Observable<string>;
   @select(dockerImagesSelector) dockerImages$: Observable<ImageInfo>;

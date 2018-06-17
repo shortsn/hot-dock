@@ -1,0 +1,48 @@
+<clr-datagrid>
+  <clr-dg-column clrDgField="Id">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
+  </clr-dg-column>
+  <clr-dg-column clrDgField="ParentId">
+    <ng-container *clrDgHideableColumn="{hidden: true}">ParentId</ng-container>
+  </clr-dg-column>
+  <clr-dg-column clrDgField="RepoTags">
+    <ng-container *clrDgHideableColumn="{hidden: false}">RepoTags</ng-container>
+  </clr-dg-column>
+  <clr-dg-column clrDgField="RepoDigests">
+    <ng-container *clrDgHideableColumn="{hidden: true}">RepoDigests</ng-container>
+  </clr-dg-column>
+  <clr-dg-column clrDgField="Created">
+    <ng-container *clrDgHideableColumn="{hidden: true}">Created</ng-container>
+  </clr-dg-column>
+  <clr-dg-column clrDgField="Size">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Size</ng-container>
+  </clr-dg-column>
+  <clr-dg-column clrDgField="VirtualSize">
+    <ng-container *clrDgHideableColumn="{hidden: true}">VirtualSize</ng-container>
+  </clr-dg-column>
+  <clr-dg-column clrDgField="Labels">
+    <ng-container *clrDgHideableColumn="{hidden: true}">Labels</ng-container>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let dockerImage of dockerImages$ | async">
+    <clr-dg-cell>{{ dockerImage.Id }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.ParentId }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.RepoTags }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.RepoDigests }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.Created }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.Size }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.VirtualSize }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.Labels }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-column-toggle>
+      <clr-dg-column-toggle-title>{{ 'datagrid.colums' | translate }}</clr-dg-column-toggle-title>
+      <clr-dg-column-toggle-button clrType="selectAll">{{ 'datagrid.allcolums' | translate }}</clr-dg-column-toggle-button>
+      <clr-dg-column-toggle-button clrType="ok">
+        <clr-icon shape="check"></clr-icon>
+      </clr-dg-column-toggle-button>
+    </clr-dg-column-toggle>
+  </clr-dg-footer>
+
+</clr-datagrid>

@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './component';
+import { DockerImagesComponent } from './component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ClarityModule } from '@clr/angular';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+  let component: DockerImagesComponent;
+  let fixture: ComponentFixture<DockerImagesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
+      declarations: [ DockerImagesComponent ],
       imports: [
         TranslateModule.forRoot(),
         ClarityModule
@@ -20,7 +20,7 @@ describe('HomeComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(DockerImagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

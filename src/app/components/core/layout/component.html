@@ -39,7 +39,7 @@
 
   <nav *ngIf="hasSubNav$ | async" class="subnav">
     <ul class="nav">
-      <li *ngFor="let subNav of subNav$ | async as subNavs" class="nav-item">
+      <li *ngFor="let subNav of subNav$ | async" class="nav-item">
         <a class="nav-link nav-icon" [routerLink]="subNav.link" routerLinkActive="active">{{ subNav.key | translate }}</a>
       </li>
     </ul>
@@ -54,7 +54,7 @@
       <section class="sidenav-content">
         <section class="nav-group">
           <ul class="nav-list">
-            <li *ngFor="let sideNav of sideNav$ | async as sideNavs">
+            <li *ngFor="let sideNav of sideNav$ | async">
               <a class="nav-link" [routerLink]="sideNav.link" routerLinkActive="active">{{ sideNav.key | translate }}</a>
             </li>
           </ul>

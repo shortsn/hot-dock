@@ -1,11 +1,11 @@
-import { HomeComponent } from './home/component';
+import { DockerImagesComponent } from './dockerImages/component';
 import { InfoRoutingModule } from './routing.module';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../core/module';
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    DockerImagesComponent,
   ],
   imports: [
     CoreModule,
