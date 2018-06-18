@@ -1,18 +1,16 @@
 <div class="main-container">
 
-  <clr-alerts *ngIf="hasAlerts$ | async">
-    <clr-alert *ngFor="let alert of alerts$ | async as alerts" [clrAlertType]="'alert-'+ alert.type" (clrAlertClosedChange)="dismissAlert(alert)"
-      [clrAlertAppLevel]="true">
-      <div class="alert-item">
-        <span class="alert-text">
-          {{ alert.message }}
-        </span>
-        <div class="alert-actions">
-          <button class="btn alert-action">Retry</button>
-        </div>
+  <clr-alert *ngFor="let alert of alerts$ | async as alerts" [clrAlertType]="'alert-'+ alert.type" (clrAlertClosedChange)="dismissAlert(alert)"
+    [clrAlertAppLevel]="true">
+    <div clr-alert-item class="alert-item">
+      <span class="alert-text">
+        {{ alert.message }}
+      </span>
+      <div class="alert-actions">
+        <button class="btn alert-action">Retry</button>
       </div>
-    </clr-alert>
-  </clr-alerts>
+    </div>
+  </clr-alert>
 
   <header class="header-6">
 

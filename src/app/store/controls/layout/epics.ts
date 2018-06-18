@@ -20,7 +20,7 @@ export class LayoutEpics {
         filter(action => isErrorAction(action)),
         flatMap(error => this.getAlert(error)),
         flatMap(alert =>
-          timer(20000).pipe(
+          timer(10000).pipe(
             map(_ => LayoutActions.REMOVE_ALERT(alert.id)),
             startWith(LayoutActions.ADD_ALERT(alert))
           )

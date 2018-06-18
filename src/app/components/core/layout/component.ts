@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { select, dispatch } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { INavItem, IAlert } from '../../../store/controls/layout/model';
@@ -11,7 +11,8 @@ import { LayoutActions } from '../../../store/controls/layout/actions';
 
 @Component({
   selector: 'app-layout',
-  templateUrl: './component.html'
+  templateUrl: './component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LayoutComponent {
 
