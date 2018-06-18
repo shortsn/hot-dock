@@ -13,5 +13,8 @@
     "code": {
       "ECONNREFUSED": "Docker service is not available."
     }
+  },
+  "alert": {
+    "retry": "Retry"
   }
 }

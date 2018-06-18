@@ -1,3 +1,4 @@
+import { Action } from 'redux';
 
 export interface INavItem {
   key: string;
@@ -12,8 +13,14 @@ export interface ILayout {
 
 export type AlertType = 'danger' | 'warning' | 'info' | 'success';
 
+export interface IAlertAction {
+  key: string;
+  value: Action;
+}
+
 export interface IAlert {
   id: string;
   type: AlertType;
   message: string;
+  action?: IAlertAction;
 }

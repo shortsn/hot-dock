@@ -6,7 +6,7 @@ import { timer } from 'rxjs/observable/timer';
 import { filter, startWith, map, flatMap } from 'rxjs/operators';
 import { isErrorAction, ErrorAction } from '../../../../ipc/redux/isAction';
 import { LayoutActions } from './actions';
-import { IAlert } from './model';
+import { IAlert, IAlertAction } from './model';
 
 import { v4 as uuid } from 'uuid';
 
@@ -19,25 +19,25 @@ export class LayoutEpics {
       .pipe(
         filter(action => isErrorAction(action)),
         flatMap(error => this.getAlert(error)),
-        flatMap(alert =>
-          timer(10000).pipe(
-            map(_ => LayoutActions.REMOVE_ALERT(alert.id)),
-            startWith(LayoutActions.ADD_ALERT(alert))
-          )
-        ),
-    )
+        map(LayoutActions.ADD_ALERT)
+      )
 
-  private async getAlert(action: ErrorAction): Promise<IAlert> {
-    const errorCode = action.payload.code;
+  private async getAlert(errorAction: ErrorAction): Promise<IAlert> {
+    const errorCode = errorAction.payload.code;
 
     const message = errorCode === undefined
-      ? JSON.stringify(action.payload)
+      ? JSON.stringify(errorAction.payload)
       : await this.translate.get(`error.code.${errorCode}`).toPromise();
+
+    const action: IAlertAction = errorAction.meta && errorAction.meta.originalAction
+      ? { key: 'alert.retry', value: errorAction.meta.originalAction }
+      : undefined;
 
     return {
       id: uuid(),
       type: 'danger',
-      message
+      message,
+      action
     };
   }
 }

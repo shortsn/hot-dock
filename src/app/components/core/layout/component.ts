@@ -8,6 +8,7 @@ import {
 } from '../../../store/controls/layout/selectors';
 import { LanguageActions } from '../../../store/session/actions';
 import { LayoutActions } from '../../../store/controls/layout/actions';
+import { Action } from 'redux';
 
 @Component({
   selector: 'app-layout',
@@ -29,5 +30,10 @@ export class LayoutComponent {
   @dispatch() langEn = () => LanguageActions.SET_LANGUAGE('en');
 
   @dispatch() dismissAlert = (alert: IAlert) => LayoutActions.REMOVE_ALERT(alert.id);
+
+  @dispatch() dismissAndDispatch = (alert: IAlert) => {
+    this.dismissAlert(alert);
+    return alert.action.value;
+  }
 
 }
