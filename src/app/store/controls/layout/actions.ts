@@ -1,5 +1,5 @@
 import { unionize, ofType } from 'unionize';
-import { INavItem } from './model';
+import { INavItem, IAlert } from './model';
 
 export const LayoutActions = unionize({
 
@@ -7,6 +7,7 @@ export const LayoutActions = unionize({
   SET_SUBNAV: ofType<INavItem[]>(),
   SET_SIDENAV: ofType<INavItem[]>(),
 
-  SET_ERROR_MESSAGE: ofType<string>(),
+  ADD_ALERT: ofType<IAlert>(),
+  REMOVE_ALERT: ofType<string>()
 
 }, 'type', 'payload');

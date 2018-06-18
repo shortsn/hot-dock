@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ActionsObservable } from 'redux-observable';
-import { Action } from 'redux';
 import { TranslateService } from '@ngx-translate/core';
 
 import { timer } from 'rxjs/observable/timer';
-import { filter, switchMap, startWith, map, flatMap } from 'rxjs/operators';
+import { filter, startWith, map, flatMap } from 'rxjs/operators';
 import { isErrorAction, ErrorAction } from '../../../../ipc/redux/isAction';
 import { LayoutActions } from './actions';
+import { IAlert } from './model';
+
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class LayoutEpics {
@@ -16,20 +18,26 @@ export class LayoutEpics {
     action$
       .pipe(
         filter(action => isErrorAction(action)),
-        flatMap(error => this.getErrorMessage(error)),
-        switchMap(message =>
-          timer(5000).pipe(
-            map(_ => LayoutActions.SET_ERROR_MESSAGE('')),
-            startWith(LayoutActions.SET_ERROR_MESSAGE(message))
+        flatMap(error => this.getAlert(error)),
+        flatMap(alert =>
+          timer(20000).pipe(
+            map(_ => LayoutActions.REMOVE_ALERT(alert.id)),
+            startWith(LayoutActions.ADD_ALERT(alert))
           )
         ),
     )
 
-  private async getErrorMessage(action: ErrorAction): Promise<string> {
+  private async getAlert(action: ErrorAction): Promise<IAlert> {
     const errorCode = action.payload.code;
-    if (errorCode === undefined) {
-      return JSON.stringify(action.payload);
-    }
-    return await this.translate.get(`error.code.${errorCode}`).toPromise();
+
+    const message = errorCode === undefined
+      ? JSON.stringify(action.payload)
+      : await this.translate.get(`error.code.${errorCode}`).toPromise();
+
+    return {
+      id: uuid(),
+      type: 'danger',
+      message
+    };
   }
 }

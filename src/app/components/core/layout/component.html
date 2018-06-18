@@ -1,16 +1,18 @@
 <div class="main-container">
-  <div *ngIf="hasErrorMessage$ | async" class="alert alert-app-level alert-warning">
-    <div class="alert-items">
-      <div class="alert-item static">
-        <div class="alert-icon-wrapper">
-          <clr-icon class="alert-icon" shape="exclamation-triangle"></clr-icon>
-        </div>
-        <div class="alert-text">
-          {{ errorMessage$ | async }}
+
+  <clr-alerts *ngIf="hasAlerts$ | async">
+    <clr-alert *ngFor="let alert of alerts$ | async as alerts" [clrAlertType]="'alert-'+ alert.type" (clrAlertClosedChange)="dismissAlert(alert)"
+      [clrAlertAppLevel]="true">
+      <div class="alert-item">
+        <span class="alert-text">
+          {{ alert.message }}
+        </span>
+        <div class="alert-actions">
+          <button class="btn alert-action">Retry</button>
         </div>
       </div>
-    </div>
-  </div>
+    </clr-alert>
+  </clr-alerts>
 
   <header class="header-6">
 
