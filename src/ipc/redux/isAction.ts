@@ -7,8 +7,11 @@ export interface IpcAction extends Action {
 }
 
 export interface ErrorAction extends Action {
-  payload: any;
+  payload?: any;
   error: true;
+  meta?: {
+    originalAction?: Action;
+  };
 }
 
 const isValidKey = (key) => ['type', 'payload', 'error', 'meta'].indexOf(key) > -1;
@@ -18,5 +21,5 @@ export function isAction(arg: any): arg is IpcAction {
 }
 
 export function isErrorAction(arg: any): arg is ErrorAction {
-  return typeof (arg) === 'object' && typeof (arg.type) === 'string' && arg.error === true && arg.payload !== undefined;
+  return typeof (arg) === 'object' && typeof (arg.type) === 'string' && arg.error === true;
 }
