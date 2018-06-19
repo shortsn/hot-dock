@@ -1,6 +1,7 @@
 os: unstable
 cache:
   - node_modules
+  - '%LocalAppData%\electron-builder\cache'
 environment:
   matrix:
     - nodejs_version: 8
