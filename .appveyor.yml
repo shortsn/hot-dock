@@ -21,3 +21,4 @@ test_script:
   - npm run ng lint
   - npm run test
   - npm run build:prod
+  - npm run electron:windows
