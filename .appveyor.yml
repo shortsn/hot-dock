@@ -24,4 +24,4 @@ test_script:
   - npm run electron:windows
 
 artifacts:
-  - path: app-builds
+  - path: 'app-builds\*.exe'
