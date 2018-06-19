@@ -20,12 +20,14 @@ export class DockerImagesComponent implements OnInit {
   @select(dockerImagesSelector) readonly dockerImages$: Observable<ImageInfo>;
 
   @dispatch() readonly changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
+
   @dispatch() readonly fetchDockerImages = () => DockerActions.FETCH_DOCKER_IMAGES({});
+  @dispatch() readonly removeDockerImage = (image: ImageInfo) => DockerActions.DOCKER_REMOVE_IMAGE(image);
 
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({
     subNav: [
-      { key: 'nav.images', link: '/info/images' },
-      { key: 'nav.containers', link: '/info/containers' }
+      { key: 'images.nav', link: '/info/images' },
+      { key: 'containers.nav', link: '/info/containers' }
     ],
     sideNav: []
   })

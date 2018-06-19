@@ -4,6 +4,7 @@
     "containers": "Containers",
     "settings": "Settings"
   },
+
   "datagrid": {
     "pagination": "{{first}} - {{last}} of {{total}}",
     "selectColumns": "Select columns",
@@ -19,8 +20,16 @@
     "retry": "Retry"
   },
   "settings": {
+    "nav": "Settings",
     "appearance": "Appearance",
     "language": "Language"
+  },
+  "containers": {
+    "nav": "Containers"
+  },
+  "images": {
+    "nav": "Images",
+    "removeImage": "Remove image"
   },
   "language": {
     "en": "English",

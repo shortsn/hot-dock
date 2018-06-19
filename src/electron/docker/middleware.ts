@@ -22,8 +22,20 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) => Middlew
 
     if (DockerActions.is.FETCH_DOCKER_IMAGES(action)) {
       catchErrors(action, store,
-        docker.listImages().then(result => store.dispatch(DockerActions.UPDATE_DOCKER_IMAGES(result)))
+        docker.
+          listImages().then(result => store.dispatch(DockerActions.UPDATE_DOCKER_IMAGES(result)))
       );
+      return next(action);
+    }
+
+    if (DockerActions.is.DOCKER_REMOVE_IMAGE(action)) {
+      catchErrors(action, store,
+        docker
+          .getImage(action.payload.Id)
+          .remove()
+          .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_IMAGE_SUCCESS(action.payload)))
+      );
+      return next(action);
     }
 
     return next(action);

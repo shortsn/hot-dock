@@ -1,9 +1,4 @@
 {
-  "nav": {
-    "images": "Images",
-    "containers": "Container",
-    "settings": "Einstellungen"
-  },
   "datagrid": {
     "pagination": "{{first}} - {{last}} von {{total}}",
     "selectColumns": "Spalten auswählen",
@@ -19,8 +14,16 @@
     "retry": "Wiederholen"
   },
   "settings": {
+    "nav": "Einstellungen",
     "appearance": "Erscheinungsbild",
     "language": "Sprache"
+  },
+  "containers": {
+    "nav": "Container"
+  },
+  "images": {
+    "nav": "Images",
+    "removeImage": "Image löschen"
   },
   "language": {
     "en": "Englisch",

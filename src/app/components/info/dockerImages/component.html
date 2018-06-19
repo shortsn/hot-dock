@@ -1,4 +1,4 @@
-<h1>{{ 'nav.images' | translate }}</h1>
+<h1>{{ 'images.nav' | translate }}</h1>
 
 <clr-datagrid>
   <clr-dg-column [clrDgField]="'Id'">
@@ -30,15 +30,15 @@
 
   <clr-dg-row *clrDgItems="let dockerImage of dockerImages$ | async">
     <clr-dg-action-overflow>
-      <button class="action-item">Action</button>
+      <button class="action-item" (click)="removeDockerImage(dockerImage)">{{ 'images.removeImage' | translate }}</button>
     </clr-dg-action-overflow>
     <clr-dg-cell>{{ dockerImage.Id }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.ParentId }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.RepoTags }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.RepoDigests }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.Created }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.Size }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.VirtualSize }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.Size | fileSize }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.VirtualSize | fileSize }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.Labels }}</clr-dg-cell>
   </clr-dg-row>
 
