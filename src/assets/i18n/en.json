@@ -1,7 +1,8 @@
 {
   "nav": {
     "images": "Images",
-    "containers": "Containers"
+    "containers": "Containers",
+    "settings": "Settings"
   },
   "datagrid": {
     "pagination": "{{first}} - {{last}} of {{total}}",
@@ -16,5 +17,13 @@
   },
   "alert": {
     "retry": "Retry"
+  },
+  "settings": {
+    "appearance": "Appearance",
+    "language": "Language"
+  },
+  "language": {
+    "en": "English",
+    "de": "German"
   }
 }

@@ -1,0 +1,17 @@
+<h1>{{ 'nav.settings' | translate }}</h1>
+
+<form>
+  <section class="form-block">
+    <label>{{ 'settings.appearance' | translate }}</label>
+
+    <div *ngIf="currentLanguage$ | async as currentLanguage" class="form-group">
+      <label>{{ 'settings.language' | translate }}</label>
+      <div *ngFor="let language of languages" class="radio-inline">
+        <input type="radio" name="radioLang" (change)="changeLanguage($event.target.value)"
+        [id]="'rd_'+language" [value]="language" [checked]="currentLanguage === language">
+        <label [for]="'rd_'+language">{{ 'language.'+language | translate }}</label>
+      </div>
+    </div>
+
+  </section>
+</form>

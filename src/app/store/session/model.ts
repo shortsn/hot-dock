@@ -1,5 +1,8 @@
 
-export type Language = 'en' | 'de';
+export enum Language {
+  'en',
+  'de',
+}
 
 export interface ISession {
   config: {

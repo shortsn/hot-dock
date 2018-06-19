@@ -7,7 +7,7 @@ const routes: Routes = [
     [
       { path: '', redirectTo: 'info', pathMatch: 'full' },
       { path: 'info', loadChildren: 'app/components/info/module#InfoModule' },
-      { path: 'test', loadChildren: 'app/components/info/module#InfoModule' }
+      { path: 'settings', loadChildren: 'app/components/settings/module#SettingsModule' }
     ]
   },
 ];

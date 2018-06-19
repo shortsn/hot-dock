@@ -6,10 +6,10 @@ import { LayoutComponent } from './layout/component';
 import { RouterModule } from '@angular/router';
 
 import { ClarityIcons } from '@clr/icons';
-import { ClrShapeFloppy } from '@clr/icons/shapes/technology-shapes';
+import { ClrShapeBundle } from '@clr/icons/shapes/technology-shapes';
 
 ClarityIcons.add({
-  floppy: ClrShapeFloppy
+  ClrShapeBundle
 });
 
 @NgModule({

@@ -15,34 +15,22 @@
   <header class="header-6">
 
     <div class="branding">
-      <a class="nav-link">
-        <clr-icon shape="vm-bug"></clr-icon>
-        <span class="title">Project Clarity</span>
-      </a>
+      <span>
+        <clr-icon shape="vm"></clr-icon>
+        <span class="title">App name</span>
+      </span>
     </div>
 
     <div class="header-nav">
       <a class="nav-link nav-icon" routerLink="/info" routerLinkActive="active">
-        <clr-icon shape="info-standard"></clr-icon>
-      </a>
-      <a class="nav-link nav-icon" routerLink="/test" routerLinkActive="active">
-        <clr-icon shape="folder"></clr-icon>
+        <clr-icon shape="host"></clr-icon>
       </a>
     </div>
 
     <div class="header-actions">
-
-      <clr-dropdown>
-        <button class="nav-icon" clrDropdownTrigger>
-          <clr-icon shape="cog"></clr-icon>
-          <clr-icon shape="caret down"></clr-icon>
-        </button>
-        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-          <a (click)="langEn()" clrDropdownItem>en</a>
-          <a (click)="langGer()" clrDropdownItem>de</a>
-        </clr-dropdown-menu>
-      </clr-dropdown>
-
+      <a class="nav-link nav-icon" routerLink="/settings" routerLinkActive="active">
+        <clr-icon shape="cog"></clr-icon>
+      </a>
     </div>
   </header>
 

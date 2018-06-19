@@ -17,21 +17,18 @@ import { Action } from 'redux';
 })
 export class LayoutComponent {
 
-  @select(subNavSelector) subNav$: Observable<INavItem[]>;
-  @select(hasSubNavSelector) hasSubNav$: Observable<boolean>;
+  @select(subNavSelector) readonly subNav$: Observable<INavItem[]>;
+  @select(hasSubNavSelector) readonly hasSubNav$: Observable<boolean>;
 
-  @select(sideNavSelector) sideNav$: Observable<INavItem[]>;
-  @select(hasSideNavSelector) hasSideNav$: Observable<boolean>;
+  @select(sideNavSelector) readonly sideNav$: Observable<INavItem[]>;
+  @select(hasSideNavSelector) readonly hasSideNav$: Observable<boolean>;
 
-  @select(alertsSelector) alerts$: Observable<IAlert>;
-  @select(hasAlertsSelector) hasAlerts$: Observable<boolean>;
+  @select(alertsSelector) readonly alerts$: Observable<IAlert>;
+  @select(hasAlertsSelector) readonly hasAlerts$: Observable<boolean>;
 
-  @dispatch() langGer = () => LanguageActions.SET_LANGUAGE('de');
-  @dispatch() langEn = () => LanguageActions.SET_LANGUAGE('en');
+  @dispatch() readonly dismissAlert = (alert: IAlert) => LayoutActions.REMOVE_ALERT(alert.id);
 
-  @dispatch() dismissAlert = (alert: IAlert) => LayoutActions.REMOVE_ALERT(alert.id);
-
-  @dispatch() dismissAndDispatch = (alert: IAlert) => {
+  @dispatch() readonly dismissAndDispatch = (alert: IAlert) => {
     this.dismissAlert(alert);
     return alert.action.value;
   }

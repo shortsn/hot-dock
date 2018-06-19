@@ -70,7 +70,7 @@ export class AppModule {
 
     const initialState = initializeStore(ngRedux, rootReducer, middlewares, []);
 
-    translate.setDefaultLang(initialState.session.language);
+    translate.setDefaultLang(initialState.session.language.toString());
     ngReduxRouter.initialize(routerSelector);
   }
 }

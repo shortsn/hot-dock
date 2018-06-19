@@ -11,19 +11,18 @@ import { ImageInfo } from 'dockerode';
 import { LayoutActions } from '../../../store/controls/layout/actions';
 
 @Component({
-  selector: 'app-home',
   templateUrl: './component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DockerImagesComponent implements OnInit {
 
-  @select(routerSelector) router$: Observable<string>;
-  @select(dockerImagesSelector) dockerImages$: Observable<ImageInfo>;
+  @select(routerSelector) readonly router$: Observable<string>;
+  @select(dockerImagesSelector) readonly dockerImages$: Observable<ImageInfo>;
 
-  @dispatch() changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
-  @dispatch() fetchDockerImages = () => DockerActions.FETCH_DOCKER_IMAGES({});
+  @dispatch() readonly changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
+  @dispatch() readonly fetchDockerImages = () => DockerActions.FETCH_DOCKER_IMAGES({});
 
-  @dispatch() setNavItems = () => LayoutActions.SET_NAV({
+  @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({
     subNav: [
       { key: 'nav.images', link: '/info/images' },
       { key: 'nav.containers', link: '/info/containers' }
@@ -31,9 +30,7 @@ export class DockerImagesComponent implements OnInit {
     sideNav: []
   })
 
-  @dispatch() setSideNavItems = () => LayoutActions.SET_SIDENAV([]);
-
-  constructor() { }
+  @dispatch() readonly setSideNavItems = () => LayoutActions.SET_SIDENAV([]);
 
   ngOnInit() {
     this.setNavItems();

@@ -5,8 +5,10 @@ html, body {
 
   height: 100%;
 
+  button.active,
   button:focus {
     outline: 0 !important;
+    box-shadow: none !important;
   }
 }
 

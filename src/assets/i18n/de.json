@@ -1,12 +1,29 @@
 {
   "nav": {
     "images": "Images",
-    "containers": "Containers"
+    "containers": "Container",
+    "settings": "Einstellungen"
   },
   "datagrid": {
     "pagination": "{{first}} - {{last}} von {{total}}",
     "selectColumns": "Spalten auswählen",
     "selectAll": "Alle auswählen",
     "noEntries": "Keine Einträge gefunden"
+  },
+  "error": {
+    "code": {
+      "ECONNREFUSED": "Dockerservice nicht erreichbar."
+    }
+  },
+  "alert": {
+    "retry": "Wiederholen"
+  },
+  "settings": {
+    "appearance": "Erscheinungsbild",
+    "language": "Sprache"
+  },
+  "language": {
+    "en": "Englisch",
+    "de": "Deutsch"
   }
 }

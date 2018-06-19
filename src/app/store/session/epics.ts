@@ -14,7 +14,7 @@ export class SessionEpics {
     action$
       .pipe(
         filter(LanguageActions.is.SET_LANGUAGE),
-        tap(action => this.translate.use(action.payload)),
+        tap(action => this.translate.use(action.payload.toString())),
         filter(_ => false),
       )
 }
