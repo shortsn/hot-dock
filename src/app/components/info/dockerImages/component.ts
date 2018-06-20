@@ -39,4 +39,5 @@ export class DockerImagesComponent implements OnInit {
     this.fetchDockerImages();
   }
 
+  toDate = (unixTimestamp: number) => new Date(unixTimestamp * 1000);
 }

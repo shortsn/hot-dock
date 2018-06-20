@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 enum FileSizeUnit {
   'bytes',
-  'KB',
+  'kB',
   'MB',
   'GB',
   'TB',
@@ -22,7 +22,7 @@ export class FileSizePipe implements PipeTransform {
       return '∞';
     }
 
-    const e = Math.floor(Math.log(bytes) / Math.log(1024));
-    return `${(bytes / Math.pow(1024, e)).toFixed(precision)}${FileSizeUnit[ e ]}`;
+    const e = Math.floor(Math.log(bytes) / Math.log(1000));
+    return `${(bytes / Math.pow(1000, e)).toFixed(precision)}${FileSizeUnit[ e ]}`;
   }
 }

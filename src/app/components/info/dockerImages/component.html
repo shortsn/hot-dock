@@ -14,7 +14,7 @@
     <ng-container *clrDgHideableColumn="{hidden: true}">RepoDigests</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'Created'">
-    <ng-container *clrDgHideableColumn="{hidden: true}">Created</ng-container>
+    <ng-container *clrDgHideableColumn="{hidden: false}">Created</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'Size'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Size</ng-container>
@@ -36,7 +36,7 @@
     <clr-dg-cell>{{ dockerImage.ParentId }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.RepoTags }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.RepoDigests }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.Created }}</clr-dg-cell>
+    <clr-dg-cell>{{ toDate(dockerImage.Created) | date }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.Size | fileSize }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.VirtualSize | fileSize }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.Labels }}</clr-dg-cell>
