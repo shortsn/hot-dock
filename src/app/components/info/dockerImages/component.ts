@@ -9,6 +9,7 @@ import { DockerActions } from '../../../store/data/docker/actions';
 import { dockerImagesSelector } from '../../../store/data/docker/selectors';
 import { ImageInfo } from 'dockerode';
 import { LayoutActions } from '../../../store/controls/layout/actions';
+import { DockerImage } from '../../../store/data/docker/model';
 
 @Component({
   templateUrl: './component.html',
@@ -16,8 +17,9 @@ import { LayoutActions } from '../../../store/controls/layout/actions';
 })
 export class DockerImagesComponent implements OnInit {
 
+
   @select(routerSelector) readonly router$: Observable<string>;
-  @select(dockerImagesSelector) readonly dockerImages$: Observable<ImageInfo>;
+  @select(dockerImagesSelector) readonly dockerImages$: Observable<DockerImage[]>;
 
   @dispatch() readonly changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
 
@@ -39,5 +41,4 @@ export class DockerImagesComponent implements OnInit {
     this.fetchDockerImages();
   }
 
-  toDate = (unixTimestamp: number) => new Date(unixTimestamp * 1000);
 }

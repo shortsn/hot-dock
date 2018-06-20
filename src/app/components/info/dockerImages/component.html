@@ -1,29 +1,20 @@
 <h1>{{ 'images.nav' | translate }}</h1>
 
 <clr-datagrid>
-  <clr-dg-column [clrDgField]="'Id'">
+  <clr-dg-column [clrDgField]="'repository'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Repository</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'tags'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Tags</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'id'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'ParentId'">
-    <ng-container *clrDgHideableColumn="{hidden: true}">ParentId</ng-container>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'RepoTags'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">RepoTags</ng-container>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'RepoDigests'">
-    <ng-container *clrDgHideableColumn="{hidden: true}">RepoDigests</ng-container>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'Created'">
+  <clr-dg-column [clrDgField]="'created'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Created</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'Size'">
+  <clr-dg-column [clrDgField]="'size'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Size</ng-container>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'VirtualSize'">
-    <ng-container *clrDgHideableColumn="{hidden: true}">VirtualSize</ng-container>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'Labels'">
-    <ng-container *clrDgHideableColumn="{hidden: true}">Labels</ng-container>
   </clr-dg-column>
 
   <clr-dg-placeholder>{{ 'datagrid.noEntries' | translate }}</clr-dg-placeholder>
@@ -32,14 +23,11 @@
     <clr-dg-action-overflow>
       <button class="action-item" (click)="removeDockerImage(dockerImage)">{{ 'images.removeImage' | translate }}</button>
     </clr-dg-action-overflow>
-    <clr-dg-cell>{{ dockerImage.Id }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.ParentId }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.RepoTags }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.RepoDigests }}</clr-dg-cell>
-    <clr-dg-cell>{{ toDate(dockerImage.Created) | date }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.Size | fileSize }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.VirtualSize | fileSize }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.Labels }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.repository }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.tags }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.id }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.created | date }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.size | fileSize }}</clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer>
