@@ -24,7 +24,7 @@ export class DockerImagesComponent implements OnInit {
   @dispatch() readonly changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
 
   @dispatch() readonly fetchDockerImages = () => DockerActions.FETCH_DOCKER_IMAGES({});
-  @dispatch() readonly removeDockerImage = (image: ImageInfo) => DockerActions.DOCKER_REMOVE_IMAGE(image);
+  @dispatch() readonly removeDockerImage = (image: DockerImage) => DockerActions.DOCKER_REMOVE_IMAGE(image.imageInfo);
 
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({
     subNav: [
