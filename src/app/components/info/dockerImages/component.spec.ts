@@ -2,9 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DockerImagesComponent } from './component';
 import { TranslateModule } from '@ngx-translate/core';
-import { ClarityModule } from '@clr/angular';
 import { InfoModule } from '../module';
-import { CoreModule } from '../../core/module';
 
 describe('HomeComponent', () => {
   let component: DockerImagesComponent;
@@ -12,9 +10,9 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DockerImagesComponent ],
+      declarations: [ ],
       imports: [
-        CoreModule,
+        InfoModule,
         TranslateModule.forRoot(),
       ]
     })
