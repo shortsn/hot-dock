@@ -11,14 +11,13 @@ export class DockerImage {
   public readonly repository: string;
   public readonly created: Date;
   public readonly tags: string[] = [];
-
-  public get size(): number {
-    return this.imageInfo.Size;
-  }
+  public readonly size: number;
 
   constructor(public imageInfo: ImageInfo) {
     this.id = shaRegex.exec(imageInfo.Id).pop();
     this.created = new Date(imageInfo.Created * 1000);
+    this.size = this.imageInfo.Size;
+
     const tag = imageInfo.RepoTags[0];
     this.repository = tag.substring(0, tag.indexOf(':'));
 
