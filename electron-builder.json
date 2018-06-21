@@ -15,6 +15,7 @@
     ],
   "win": {
     "icon": "dist",
+    "publish": ["github"],
     "target": [
       "portable"
     ]
