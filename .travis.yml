@@ -13,4 +13,4 @@ install:
 script:
   - ng lint
   - npm run test
-  - npm run build:prod
+  - npm run electron:mac
