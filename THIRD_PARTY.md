@@ -1,4 +1,5 @@
-# This project is originally based on https://github.com/maximegris/angular-electron
+# This project is originally based on
+https://github.com/maximegris/angular-electron
 
 Copyright 2018 - Maxime GRIS
 
