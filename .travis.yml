@@ -1,16 +1,39 @@
+osx_image: xcode8.3
+
+dist: trusty
+sudo: false
+
 language: node_js
 node_js:
   - 8
-sudo: required
+
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
+cache:
+  directories:
+  - node_modules
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
+  - $HOME/.npm/_prebuilds
+
 addons:
   chrome: stable
+
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+
 install:
   - npm set progress=false
   - npm install
+
 script:
   - ng lint
   - npm run test
   - npm run electron:mac
+
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
