@@ -18,8 +18,8 @@
     "electron:serve": "wait-on http-get://localhost:4200 && wait-on http-get://localhost:8000 && npm run build && electron dist/electron/main.js --serve",
     "electron:local": "npm run build && electron dist/electron/main.js",
     "electron:linux": "npm run build:prod && npx electron-builder build --linux",
-    "electron:windows": "npm run build:prod && npx electron-builder --publish onTagOrDraft build --windows",
-    "electron:mac": "npm run build:prod && npx electron-builder build --mac",
+    "electron:windows": "npm run build:prod && npx electron-builder --publish always build --windows",
+    "electron:mac": "npm run build:prod && npx electron-builder --publish always build --mac",
     "test": "jest",
     "test:watch": "jest --watch",
     "bundle:report": "webpack-bundle-analyzer dist/stats.json"
