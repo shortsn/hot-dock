@@ -7,6 +7,7 @@ cache:
 environment:
   matrix:
     - nodejs_version: 8
+
 install:
   - ps: Install-Product node $env:nodejs_version
   - set CI=true
@@ -14,16 +15,19 @@ install:
   - set PATH=%APPDATA%\npm;%PATH%
   - npm set progress=false
   - npm install
+
 matrix:
   fast_finish: true
+
 build: off
+
 version: '{build}'
+
 shallow_clone: true
+
 clone_depth: 1
+
 test_script:
   - npm run ng lint
   - npm run test
   - npm run electron:windows
-
-artifacts:
-  - path: 'app-builds\*.exe'
