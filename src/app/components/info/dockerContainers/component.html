@@ -1,0 +1,51 @@
+<h1>{{ 'containers.nav' | translate }}</h1>
+
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'id'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'image'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Image</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'command'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Command</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'created'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Created</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'status'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Status</ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'ports'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Ports</ng-container>
+  </clr-dg-column>
+
+  <clr-dg-placeholder>{{ 'datagrid.noEntries' | translate }}</clr-dg-placeholder>
+
+  <!-- <clr-dg-row *clrDgItems="let dockerImage of dockerImages$ | async">
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="removeDockerImage(dockerImage)">{{ 'images.removeImage' | translate }}</button>
+    </clr-dg-action-overflow>
+    <clr-dg-cell>{{ dockerImage.repository }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.tags }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.id }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.created | date }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.size | fileSize }}</clr-dg-cell>
+  </clr-dg-row> -->
+
+  <clr-dg-footer>
+    <clr-dg-column-toggle>
+      <clr-dg-column-toggle-title>{{ 'datagrid.selectColumns' | translate }}</clr-dg-column-toggle-title>
+      <clr-dg-column-toggle-button clrType="selectAll">{{ 'datagrid.selectAll' | translate }}</clr-dg-column-toggle-button>
+      <clr-dg-column-toggle-button clrType="ok">
+        <clr-icon shape="check"></clr-icon>
+      </clr-dg-column-toggle-button>
+    </clr-dg-column-toggle>
+
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      {{ 'datagrid.pagination' | translate: { first: pagination.firstItem +1, last: pagination.lastItem + 1, total: pagination.totalItems
+      } }}
+    </clr-dg-pagination>
+  </clr-dg-footer>
+
+</clr-datagrid>

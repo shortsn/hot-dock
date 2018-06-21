@@ -3,10 +3,12 @@ import { InfoRoutingModule } from './routing.module';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../core/module';
 import { FileSizePipe } from './fileSize/pipe';
+import { DockerContainersComponent } from './dockerContainers/component';
 
 @NgModule({
   declarations: [
     DockerImagesComponent,
+    DockerContainersComponent,
     FileSizePipe
   ],
   imports: [
