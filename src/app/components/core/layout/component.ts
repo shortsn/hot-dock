@@ -6,16 +6,16 @@ import {
   subNavSelector, hasSubNavSelector,
   sideNavSelector, hasSideNavSelector, alertsSelector, hasAlertsSelector
 } from '../../../store/controls/layout/selectors';
-import { LanguageActions } from '../../../store/session/actions';
 import { LayoutActions } from '../../../store/controls/layout/actions';
-import { Action } from 'redux';
+import { isDockerHealthySelector } from '../../../store/data/docker/selectors';
 
 @Component({
-  selector: 'app-layout',
   templateUrl: './component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LayoutComponent {
+
+  @select(isDockerHealthySelector) readonly isDockerHealthy$: Observable<boolean>;
 
   @select(subNavSelector) readonly subNav$: Observable<INavItem[]>;
   @select(hasSubNavSelector) readonly hasSubNav$: Observable<boolean>;

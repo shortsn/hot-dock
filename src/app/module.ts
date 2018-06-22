@@ -24,6 +24,7 @@ import { initializeStore } from '../environments/environment';
 
 import { CoreModule } from './components/core/module';
 import { LayoutEpics } from './store/controls/layout/epics';
+import { DockerActions } from './store/data/docker/actions';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -72,5 +73,7 @@ export class AppModule {
 
     translate.setDefaultLang(initialState.session.language.toString());
     ngReduxRouter.initialize(routerSelector);
+
+    ngRedux.dispatch(DockerActions.DOCKER_START_HEALTHCHECK(10000));
   }
 }

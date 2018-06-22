@@ -1,4 +1,4 @@
-<div class="main-container">
+<div *ngIf="isDockerHealthy$ | async; else docker_error" class="main-container">
 
   <clr-alert *ngFor="let alert of alerts$ | async as alerts" [clrAlertType]="'alert-'+ alert.type" (clrAlertClosedChange)="dismissAlert(alert)"
     [clrAlertAppLevel]="true">
@@ -17,7 +17,7 @@
     <div class="branding">
       <span>
         <clr-icon shape="vm"></clr-icon>
-        <span class="title">App name</span>
+        <span class="title">Hot Dock</span>
       </span>
     </div>
 
@@ -62,3 +62,7 @@
   </div>
 
 </div>
+
+<ng-template #docker_error>
+  <app-docker-error></app-docker-error>
+</ng-template>

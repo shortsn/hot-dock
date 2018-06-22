@@ -1,6 +1,6 @@
 images
 
-  actions
+  - actions
     - create container
     - list containers (move and filter)
 
@@ -13,5 +13,9 @@ local registry
 
 build
 
-  compodoc + deployment?
-  e2e test setup
+  - compodoc + deployment?
+  - e2e test setup
+
+
+settings
+  set docker host

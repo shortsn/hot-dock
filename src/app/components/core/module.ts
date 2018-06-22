@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { ClarityIcons } from '@clr/icons';
 import { ClrShapeBundle } from '@clr/icons/shapes/technology-shapes';
+import { DockerErrorComponent } from './docker-error/component';
 
 ClarityIcons.add({
   ClrShapeBundle
@@ -15,6 +16,7 @@ ClarityIcons.add({
 @NgModule({
   declarations: [
     LayoutComponent,
+    DockerErrorComponent
   ],
   imports: [
     CommonModule,
