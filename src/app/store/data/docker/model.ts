@@ -1,4 +1,4 @@
-import { ImageInfo } from 'dockerode';
+import { ImageInfo, ContainerInfo } from 'dockerode';
 
 export enum DockerHealth {
   UNKNOWN,
@@ -9,6 +9,7 @@ export enum DockerHealth {
 export interface IDocker {
   dockerHealth: DockerHealth;
   images: ImageInfo[];
+  containers: ContainerInfo[];
 }
 
 const shaRegex = /sha256:(.{12})/;

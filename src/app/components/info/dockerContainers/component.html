@@ -22,16 +22,14 @@
 
   <clr-dg-placeholder>{{ 'datagrid.noEntries' | translate }}</clr-dg-placeholder>
 
-  <!-- <clr-dg-row *clrDgItems="let dockerImage of dockerImages$ | async">
-    <clr-dg-action-overflow>
-      <button class="action-item" (click)="removeDockerImage(dockerImage)">{{ 'images.removeImage' | translate }}</button>
-    </clr-dg-action-overflow>
-    <clr-dg-cell>{{ dockerImage.repository }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.tags }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.id }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.created | date }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.size | fileSize }}</clr-dg-cell>
-  </clr-dg-row> -->
+  <clr-dg-row *clrDgItems="let container of dockerContainers$ | async">
+    <clr-dg-cell>{{ container.Id }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.Image }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.Command }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.created | date }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.Status }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.Ports  }}</clr-dg-cell>
+  </clr-dg-row>
 
   <clr-dg-footer>
     <clr-dg-column-toggle>
