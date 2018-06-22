@@ -15,6 +15,7 @@ build
 
   - compodoc + deployment?
   - e2e test setup
+  - optimized/treeshaked build for main process
 
 
 settings

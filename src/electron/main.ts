@@ -1,7 +1,6 @@
-import { app, BrowserWindow, screen, Tray } from 'electron';
+import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import { createTray } from './tray';
 
 // redux
 import { replayActionMain, forwardToRenderer } from '../ipc/redux/main';
@@ -11,7 +10,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import data from '../app/store/data/reducer';
 import session from '../app/store/session/reducer';
 
-let win: BrowserWindow, serve: boolean, tray: Tray;
+let win: BrowserWindow, serve: boolean;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
@@ -76,14 +75,7 @@ try {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
-  app.on('ready', () => {
-    tray = createTray(
-      { role: 'toggleDevTools' },
-      { type: 'separator' },
-      { role: 'quit' }
-    );
-    createWindow();
-  });
+  app.on('ready', createWindow);
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {

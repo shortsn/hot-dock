@@ -34,32 +34,33 @@
     </div>
   </header>
 
-  <nav *ngIf="hasSubNav$ | async" class="subnav">
-    <ul class="nav">
-      <li *ngFor="let subNav of subNav$ | async" class="nav-item">
-        <a class="nav-link nav-icon" [routerLink]="subNav.link" routerLinkActive="active">{{ subNav.key | translate }}</a>
-      </li>
-    </ul>
-  </nav>
-
-  <div class="content-container">
-    <div class="content-area">
-      <router-outlet *ngIf="isDockerHealthy$ | async; else docker_error"></router-outlet>
-    </div>
-
-    <nav *ngIf="hasSideNav$ | async" class="sidenav">
-      <section class="sidenav-content">
-        <section class="nav-group">
-          <ul class="nav-list">
-            <li *ngFor="let sideNav of sideNav$ | async">
-              <a class="nav-link" [routerLink]="sideNav.link" routerLinkActive="active">{{ sideNav.key | translate }}</a>
-            </li>
-          </ul>
-        </section>
-      </section>
+  <ng-container *ngIf="isDockerHealthy$ | async; else docker_error">
+    <nav *ngIf="hasSubNav$ | async" class="subnav">
+      <ul class="nav">
+        <li *ngFor="let subNav of subNav$ | async" class="nav-item">
+          <a class="nav-link nav-icon" [routerLink]="subNav.link" routerLinkActive="active">{{ subNav.key | translate }}</a>
+        </li>
+      </ul>
     </nav>
 
-  </div>
+    <div class="content-container">
+      <div class="content-area">
+        <router-outlet></router-outlet>
+      </div>
+
+      <nav *ngIf="hasSideNav$ | async" class="sidenav">
+        <section class="sidenav-content">
+          <section class="nav-group">
+            <ul class="nav-list">
+              <li *ngFor="let sideNav of sideNav$ | async">
+                <a class="nav-link" [routerLink]="sideNav.link" routerLinkActive="active">{{ sideNav.key | translate }}</a>
+              </li>
+            </ul>
+          </section>
+        </section>
+      </nav>
+    </div>
+  </ng-container>
 
 </div>
 
