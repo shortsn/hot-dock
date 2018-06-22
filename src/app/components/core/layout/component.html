@@ -1,4 +1,4 @@
-<div *ngIf="isDockerHealthy$ | async; else docker_error" class="main-container">
+<div class="main-container">
 
   <clr-alert *ngFor="let alert of alerts$ | async as alerts" [clrAlertType]="'alert-'+ alert.type" (clrAlertClosedChange)="dismissAlert(alert)"
     [clrAlertAppLevel]="true">
@@ -44,7 +44,7 @@
 
   <div class="content-container">
     <div class="content-area">
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="isDockerHealthy$ | async; else docker_error"></router-outlet>
     </div>
 
     <nav *ngIf="hasSideNav$ | async" class="sidenav">
