@@ -20,3 +20,6 @@ build
 
 settings
   set docker host
+  save locally
+
+increase startup speed using app shell

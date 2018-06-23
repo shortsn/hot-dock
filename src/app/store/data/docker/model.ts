@@ -19,12 +19,10 @@ export class DockerImage {
   public readonly repository: string;
   public readonly created: Date;
   public readonly tags: string[] = [];
-  public readonly size: number;
 
   constructor(public imageInfo: ImageInfo) {
     this.id = shaRegex.exec(imageInfo.Id).pop();
     this.created = new Date(imageInfo.Created * 1000);
-    this.size = this.imageInfo.Size;
 
     const tag = imageInfo.RepoTags[0];
     this.repository = tag.substring(0, tag.indexOf(':'));
@@ -38,5 +36,15 @@ export class DockerImage {
       this.tags.push(parts[1]);
     }
   }
+}
 
+
+export class DockerContainer {
+  public readonly id: string;
+  public readonly names: string[];
+
+  constructor(public containerInfo: ContainerInfo) {
+    this.id = containerInfo.Id.substring(0, 12);
+    this.names = containerInfo.Names.map(name => name.substring(1));
+  }
 }

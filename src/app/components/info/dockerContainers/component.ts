@@ -2,10 +2,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { dispatch, select } from '@angular-redux/store';
 
 import { LayoutActions } from '../../../store/controls/layout/actions';
-import { dockerContainerInfosSelector } from '../../../store/data/docker/selectors';
 import { Observable } from 'rxjs/Observable';
-import { ContainerInfo } from 'dockerode';
 import { DockerActions } from '../../../store/data/docker/actions';
+import { DockerContainer } from '../../../store/data/docker/model';
+import { dockerContainerSelector } from '../../../store/data/docker/selectors';
 
 @Component({
   templateUrl: './component.html',
@@ -13,7 +13,7 @@ import { DockerActions } from '../../../store/data/docker/actions';
 })
 export class DockerContainersComponent implements OnInit {
 
-  @select(dockerContainerInfosSelector) readonly dockerContainers$: Observable<ContainerInfo[]>;
+  @select(dockerContainerSelector) readonly dockerContainers$: Observable<DockerContainer[]>;
 
   @dispatch() readonly fetchDockerContainers = () => DockerActions.FETCH_DOCKER_CONTAINERS({});
 

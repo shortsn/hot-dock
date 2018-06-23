@@ -4,31 +4,35 @@
   <clr-dg-column [clrDgField]="'id'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'image'">
+  <clr-dg-column [clrDgField]="'names'">
+      <ng-container *clrDgHideableColumn="{hidden: false}">Names</ng-container>
+    </clr-dg-column>
+  <clr-dg-column [clrDgField]="'containerInfo.Image'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Image</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'command'">
+  <clr-dg-column [clrDgField]="'containerInfo.Command'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Command</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'created'">
+  <clr-dg-column [clrDgField]="'containerInfo.Created'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Created</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'status'">
+  <clr-dg-column [clrDgField]="'containerInfo.Status'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Status</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'ports'">
+  <clr-dg-column [clrDgField]="'containerInfo.Ports'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Ports</ng-container>
   </clr-dg-column>
 
   <clr-dg-placeholder>{{ 'datagrid.noEntries' | translate }}</clr-dg-placeholder>
 
   <clr-dg-row *clrDgItems="let container of dockerContainers$ | async">
-    <clr-dg-cell>{{ container.Id }}</clr-dg-cell>
-    <clr-dg-cell>{{ container.Image }}</clr-dg-cell>
-    <clr-dg-cell>{{ container.Command }}</clr-dg-cell>
-    <clr-dg-cell>{{ container.created | date }}</clr-dg-cell>
-    <clr-dg-cell>{{ container.Status }}</clr-dg-cell>
-    <clr-dg-cell>{{ container.Ports  }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.id }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.names }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.containerInfo.Image }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.containerInfo.Command }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.containerInfo.Created | date }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.containerInfo.Status }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.containerInfo.Ports }}</clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer>

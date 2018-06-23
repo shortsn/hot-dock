@@ -55,7 +55,7 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
       if (DockerActions.is.FETCH_DOCKER_CONTAINERS(action)) {
         catchErrors(action, store,
           docker.
-            listContainers().then(result => store.dispatch(DockerActions.UPDATE_DOCKER_CONTAINERS(result)))
+            listContainers({ all: true }).then(result => store.dispatch(DockerActions.UPDATE_DOCKER_CONTAINERS(result)))
         );
         return next(action);
       }

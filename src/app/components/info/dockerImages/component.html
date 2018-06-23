@@ -13,7 +13,7 @@
   <clr-dg-column [clrDgField]="'created'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Created</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'size'">
+  <clr-dg-column [clrDgField]="'imageInfo.Size'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Size</ng-container>
   </clr-dg-column>
 
@@ -27,7 +27,7 @@
     <clr-dg-cell>{{ dockerImage.tags }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.id }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.created | date }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.size | fileSize }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.imageInfo.Size | fileSize }}</clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer>
