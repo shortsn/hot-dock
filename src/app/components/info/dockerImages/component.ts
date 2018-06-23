@@ -6,12 +6,16 @@ import { DockerActions } from '../../../store/data/docker/actions';
 import { dockerImagesSelector } from '../../../store/data/docker/selectors';
 import { LayoutActions } from '../../../store/controls/layout/actions';
 import { DockerImage } from '../../../store/data/docker/model';
+import { ActivatedRoute } from '@angular/router';
+import { QueryParams } from './model';
 
 @Component({
   templateUrl: './component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DockerImagesComponent implements OnInit {
+
+  readonly queryParams$: Observable<QueryParams>;
 
   @select(dockerImagesSelector) readonly dockerImages$: Observable<DockerImage[]>;
 
@@ -27,6 +31,10 @@ export class DockerImagesComponent implements OnInit {
     ],
     sideNav: []
   })
+
+  constructor(route: ActivatedRoute) {
+    this.queryParams$ = route.queryParams;
+  }
 
   ngOnInit() {
     this.setNavItems();

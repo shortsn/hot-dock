@@ -7,7 +7,7 @@
   <clr-dg-column [clrDgField]="'tags'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Tags</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'imageInfo.Id'">
+  <clr-dg-column [clrDgField]="'imageInfo.Id'" [clrFilterValue]="(queryParams$ | async)?.filterById">
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'created'">

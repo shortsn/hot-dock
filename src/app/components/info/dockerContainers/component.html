@@ -28,7 +28,11 @@
   <clr-dg-row *clrDgItems="let container of dockerContainers$ | async">
     <clr-dg-cell>{{ container.id }}</clr-dg-cell>
     <clr-dg-cell>{{ container.names }}</clr-dg-cell>
-    <clr-dg-cell><a routerLink="/info/images">{{ container.containerInfo.ImageID | shortHash }}</a></clr-dg-cell>
+    <clr-dg-cell>
+      <a routerLink="/info/images" [queryParams]="{ filterById: container.containerInfo.ImageID }" >
+      {{ container.containerInfo.ImageID | shortHash }}
+      </a>
+    </clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Command }}</clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Created | date }}</clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Status }}</clr-dg-cell>
