@@ -17,6 +17,8 @@ export class DockerImagesComponent implements OnInit {
 
   @dispatch() readonly fetchDockerImages = () => DockerActions.DOCKER_FETCH_IMAGES({});
   @dispatch() readonly removeDockerImage = (image: DockerImage) => DockerActions.DOCKER_REMOVE_IMAGE(image.imageInfo);
+  @dispatch() readonly createDockerContainer = (image: DockerImage) =>
+    DockerActions.DOCKER_CREATE_CONTAINER({ imageId: image.imageInfo.Id })
 
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({
     subNav: [

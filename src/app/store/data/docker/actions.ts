@@ -16,6 +16,8 @@ export const DockerActions = unionize({
   DOCKER_FETCH_CONTAINERS_FAILED: ofType<Error>(),
   DOCKER_UPDATE_CONTAINERS: ofType<ContainerInfo[]>(),
 
+  DOCKER_CREATE_CONTAINER: ofType<{ imageId: string }>(),
+
   DOCKER_START_HEALTHCHECK: ofType<number>(),
   DOCKER_STOP_HEALTHCHECK: ofType<{}>(),
   DOCKER_SET_HEALTH: ofType<DockerHealth>(),

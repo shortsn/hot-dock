@@ -51,6 +51,9 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
         DOCKER_START_HEALTHCHECK: () => Promise.resolve(healthCheck$.next(action)),
         DOCKER_STOP_HEALTHCHECK: () => Promise.resolve(healthCheck$.next(action)),
 
+        DOCKER_CREATE_CONTAINER: ({ imageId }) =>
+          docker.createContainer({ Image: imageId }),
+
       }, () => Promise.resolve())(action);
 
       dockerAction.catch(error =>

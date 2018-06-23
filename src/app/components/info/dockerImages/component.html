@@ -7,7 +7,7 @@
   <clr-dg-column [clrDgField]="'tags'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Tags</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'id'">
+  <clr-dg-column [clrDgField]="'imageInfo.Id'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'created'">
@@ -22,10 +22,11 @@
   <clr-dg-row *clrDgItems="let dockerImage of dockerImages$ | async">
     <clr-dg-action-overflow>
       <button class="action-item" (click)="removeDockerImage(dockerImage)">{{ 'images.removeImage' | translate }}</button>
+      <button class="action-item" (click)="createDockerContainer(dockerImage)">{{ 'images.createContainer' | translate }}</button>
     </clr-dg-action-overflow>
     <clr-dg-cell>{{ dockerImage.repository }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.tags }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.id }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.imageInfo.Id | shortHash }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.created | date }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.imageInfo.Size | fileSize }}</clr-dg-cell>
   </clr-dg-row>

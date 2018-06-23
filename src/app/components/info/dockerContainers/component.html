@@ -7,8 +7,8 @@
   <clr-dg-column [clrDgField]="'names'">
       <ng-container *clrDgHideableColumn="{hidden: false}">Names</ng-container>
     </clr-dg-column>
-  <clr-dg-column [clrDgField]="'containerInfo.Image'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">Image</ng-container>
+  <clr-dg-column [clrDgField]="'containerInfo.ImageID'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">ImageID</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'containerInfo.Command'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Command</ng-container>
@@ -28,7 +28,7 @@
   <clr-dg-row *clrDgItems="let container of dockerContainers$ | async">
     <clr-dg-cell>{{ container.id }}</clr-dg-cell>
     <clr-dg-cell>{{ container.names }}</clr-dg-cell>
-    <clr-dg-cell>{{ container.containerInfo.Image }}</clr-dg-cell>
+    <clr-dg-cell><a routerLink="/info/images">{{ container.containerInfo.ImageID | shortHash }}</a></clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Command }}</clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Created | date }}</clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Status }}</clr-dg-cell>
