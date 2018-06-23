@@ -15,7 +15,7 @@ export class DockerContainersComponent implements OnInit {
 
   @select(dockerContainerSelector) readonly dockerContainers$: Observable<DockerContainer[]>;
 
-  @dispatch() readonly fetchDockerContainers = () => DockerActions.FETCH_DOCKER_CONTAINERS({});
+  @dispatch() readonly fetchDockerContainers = () => DockerActions.DOCKER_FETCH_CONTAINERS({});
 
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({
     subNav: [

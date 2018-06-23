@@ -15,7 +15,7 @@ export class DockerImagesComponent implements OnInit {
 
   @select(dockerImagesSelector) readonly dockerImages$: Observable<DockerImage[]>;
 
-  @dispatch() readonly fetchDockerImages = () => DockerActions.FETCH_DOCKER_IMAGES({});
+  @dispatch() readonly fetchDockerImages = () => DockerActions.DOCKER_FETCH_IMAGES({});
   @dispatch() readonly removeDockerImage = (image: DockerImage) => DockerActions.DOCKER_REMOVE_IMAGE(image.imageInfo);
 
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({

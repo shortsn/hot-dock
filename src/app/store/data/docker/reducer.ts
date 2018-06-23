@@ -6,9 +6,9 @@ import { ImageInfo } from 'dockerode';
 const images = (state: ImageInfo[] = [], action) =>
   DockerActions.match(
     {
-      FETCH_DOCKER_IMAGES: _ => [],
-      FETCH_DOCKER_IMAGES_FAILED: _ => [],
-      UPDATE_DOCKER_IMAGES: items => items,
+      DOCKER_FETCH_IMAGES: _ => [],
+      DOCKER_FETCH_IMAGES_FAILED: _ => [],
+      DOCKER_UPDATE_IMAGES: items => items,
 
       DOCKER_REMOVE_IMAGE_SUCCESS: removed =>
         state.filter(item => item.Id !== removed.Id)
@@ -19,9 +19,9 @@ const images = (state: ImageInfo[] = [], action) =>
 const containers = (state: ImageInfo[] = [], action) =>
   DockerActions.match(
     {
-      FETCH_DOCKER_CONTAINERS: _ => [],
-      FETCH_DOCKER_CONTAINERS_FAILED: _ => [],
-      UPDATE_DOCKER_CONTAINERS: items => items,
+      DOCKER_FETCH_CONTAINERS: _ => [],
+      DOCKER_FETCH_CONTAINERS_FAILED: _ => [],
+      DOCKER_UPDATE_CONTAINERS: items => items,
     },
     _ => state
   )(action);

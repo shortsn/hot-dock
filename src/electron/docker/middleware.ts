@@ -44,18 +44,18 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
 
     return next => (action: any) => {
 
-      if (DockerActions.is.FETCH_DOCKER_IMAGES(action)) {
+      if (DockerActions.is.DOCKER_FETCH_IMAGES(action)) {
         catchErrors(action, store,
           docker.
-            listImages().then(result => store.dispatch(DockerActions.UPDATE_DOCKER_IMAGES(result)))
+            listImages().then(result => store.dispatch(DockerActions.DOCKER_UPDATE_IMAGES(result)))
         );
         return next(action);
       }
 
-      if (DockerActions.is.FETCH_DOCKER_CONTAINERS(action)) {
+      if (DockerActions.is.DOCKER_FETCH_CONTAINERS(action)) {
         catchErrors(action, store,
           docker.
-            listContainers({ all: true }).then(result => store.dispatch(DockerActions.UPDATE_DOCKER_CONTAINERS(result)))
+            listContainers({ all: true }).then(result => store.dispatch(DockerActions.DOCKER_UPDATE_CONTAINERS(result)))
         );
         return next(action);
       }
