@@ -23,7 +23,8 @@
   },
   "images": {
     "nav": "Images",
-    "removeImage": "Image löschen"
+    "removeImage": "Image löschen",
+    "createContainer": "Container erstellen"
   },
   "language": {
     "en": "Englisch",
