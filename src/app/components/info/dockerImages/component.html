@@ -1,13 +1,14 @@
 <h1>{{ 'images.nav' | translate }}</h1>
 
-<clr-datagrid>
+<clr-datagrid *ngIf="queryParams$ | async as queryParams">
+
   <clr-dg-column [clrDgField]="'repository'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Repository</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'tags'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Tags</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'imageInfo.Id'" [clrFilterValue]="(queryParams$ | async)?.filterById">
+  <clr-dg-column [clrDgField]="'imageInfo.Id'" [clrFilterValue]="queryParams?.filterById" >
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'created'">
