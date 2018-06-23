@@ -9,18 +9,6 @@ import { of } from 'rxjs/observable/of';
 import { switchMap, flatMap, startWith, map, tap, distinctUntilChanged } from 'rxjs/operators';
 import { DockerHealth } from '../../app/store/data/docker/model';
 
-function catchErrors<T, S>(originalAction: IpcAction, store: MiddlewareAPI<S>, promise: Promise<T>): Promise<any> {
-  return promise.catch(error => store.dispatch(<ErrorAction>{
-      type: `${originalAction.type}_FAILED`,
-      payload: error,
-      error: true,
-      meta: {
-        originalAction
-      }
-    })
-  );
-}
-
 export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
   Middleware = options => store => {
 
@@ -44,36 +32,37 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
 
     return next => (action: any) => {
 
-      if (DockerActions.is.DOCKER_FETCH_IMAGES(action)) {
-        catchErrors(action, store,
-          docker.
-            listImages().then(result => store.dispatch(DockerActions.DOCKER_UPDATE_IMAGES(result)))
-        );
-        return next(action);
-      }
+      const dockerAction = DockerActions.match<any, Promise<any>>({
 
-      if (DockerActions.is.DOCKER_FETCH_CONTAINERS(action)) {
-        catchErrors(action, store,
-          docker.
-            listContainers({ all: true }).then(result => store.dispatch(DockerActions.DOCKER_UPDATE_CONTAINERS(result)))
-        );
-        return next(action);
-      }
-
-      if (DockerActions.is.DOCKER_REMOVE_IMAGE(action)) {
-        catchErrors(action, store,
+        DOCKER_FETCH_IMAGES: () =>
           docker
-            .getImage(action.payload.Id)
-            .remove()
-            .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_IMAGE_SUCCESS(action.payload)))
-        );
-        return next(action);
-      }
+            .listImages().then(result => store.dispatch(DockerActions.DOCKER_UPDATE_IMAGES(result))),
 
-      if (DockerActions.is.DOCKER_START_HEALTHCHECK(action) || DockerActions.is.DOCKER_STOP_HEALTHCHECK(action)) {
-        healthCheck$.next(action);
-        return next(action);
-      }
+        DOCKER_FETCH_CONTAINERS: () =>
+          docker
+            .listContainers({ all: true }).then(result => store.dispatch(DockerActions.DOCKER_UPDATE_CONTAINERS(result))),
+
+        DOCKER_REMOVE_IMAGE: image =>
+          docker
+            .getImage(image.Id)
+            .remove()
+            .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_IMAGE_SUCCESS(action.payload))),
+
+        DOCKER_START_HEALTHCHECK: () => Promise.resolve(healthCheck$.next(action)),
+        DOCKER_STOP_HEALTHCHECK: () => Promise.resolve(healthCheck$.next(action)),
+
+      }, () => Promise.resolve())(action);
+
+      dockerAction.catch(error =>
+        store.dispatch(<ErrorAction>{
+          type: `${action.type}_FAILED`,
+          payload: error,
+          error: true,
+          meta: {
+            originalAction: action
+          }
+        })
+      );
 
       return next(action);
     };
