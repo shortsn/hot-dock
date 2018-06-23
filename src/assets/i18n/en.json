@@ -12,9 +12,7 @@
     "noEntries": "No entries found"
   },
   "error": {
-    "code": {
-      "ECONNREFUSED": "Docker service is not available."
-    }
+    "DOCKER_REMOVE_IMAGE_FAILED": "{{ json.message }}"
   },
   "alert": {
     "retry": "Retry"
@@ -25,7 +23,8 @@
     "language": "Language"
   },
   "containers": {
-    "nav": "Containers"
+    "nav": "Containers",
+    "removeContainer": "Delete container"
   },
   "images": {
     "nav": "Images",

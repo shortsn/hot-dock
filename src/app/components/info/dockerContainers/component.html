@@ -26,6 +26,11 @@
   <clr-dg-placeholder>{{ 'datagrid.noEntries' | translate }}</clr-dg-placeholder>
 
   <clr-dg-row *clrDgItems="let container of dockerContainers$ | async">
+
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="removeDockerContainer(container)">{{ 'containers.removeContainer' | translate }}</button>
+    </clr-dg-action-overflow>
+
     <clr-dg-cell>{{ container.id }}</clr-dg-cell>
     <clr-dg-cell>{{ container.names }}</clr-dg-cell>
     <clr-dg-cell>

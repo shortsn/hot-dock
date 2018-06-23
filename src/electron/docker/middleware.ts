@@ -31,7 +31,6 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
       .subscribe();
 
     return next => (action: any) => {
-
       const dockerAction = DockerActions.match<any, Promise<any>>({
 
         DOCKER_FETCH_IMAGES: () =>
@@ -42,17 +41,22 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
           docker
             .listContainers({ all: true }).then(result => store.dispatch(DockerActions.DOCKER_UPDATE_CONTAINERS(result))),
 
-        DOCKER_REMOVE_IMAGE: image =>
+        DOCKER_REMOVE_IMAGE: imageInfo =>
           docker
-            .getImage(image.Id)
+            .getImage(imageInfo.Id)
             .remove()
-            .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_IMAGE_SUCCESS(action.payload))),
+            .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_IMAGE_SUCCESS(imageInfo))),
 
         DOCKER_START_HEALTHCHECK: () => Promise.resolve(healthCheck$.next(action)),
         DOCKER_STOP_HEALTHCHECK: () => Promise.resolve(healthCheck$.next(action)),
 
-        DOCKER_CREATE_CONTAINER: ({ imageId }) =>
-          docker.createContainer({ Image: imageId }),
+        DOCKER_CREATE_CONTAINER: ({ imageId }) => docker.createContainer({ Image: imageId }),
+
+        DOCKER_REMOVE_CONTAINER: containerInfo =>
+          docker
+            .getContainer(containerInfo.Id)
+            .remove()
+            .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_CONTAINER_SUCCESS(containerInfo))),
 
       }, () => Promise.resolve())(action);
 

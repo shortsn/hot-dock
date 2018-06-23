@@ -6,9 +6,6 @@
     "noEntries": "Keine Einträge gefunden"
   },
   "error": {
-    "code": {
-      "ECONNREFUSED": "Dockerservice nicht erreichbar."
-    }
   },
   "alert": {
     "retry": "Wiederholen"
@@ -19,7 +16,8 @@
     "language": "Sprache"
   },
   "containers": {
-    "nav": "Container"
+    "nav": "Container",
+    "removeContainer": "Container löschen"
   },
   "images": {
     "nav": "Images",

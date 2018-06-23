@@ -6,11 +6,14 @@ import { LayoutComponent } from './layout/component';
 import { RouterModule } from '@angular/router';
 
 import { ClarityIcons } from '@clr/icons';
-import { ClrShapeBundle } from '@clr/icons/shapes/technology-shapes';
+import { ClrShapeVM, ClrShapeHost } from '@clr/icons/shapes/technology-shapes';
+import { ClrShapeTrash } from '@clr/icons/shapes/essential-shapes';
 import { DockerErrorComponent } from './docker-error/component';
 
 ClarityIcons.add({
-  ClrShapeBundle
+  ClrShapeVM,
+  ClrShapeHost,
+  ClrShapeTrash
 });
 
 @NgModule({

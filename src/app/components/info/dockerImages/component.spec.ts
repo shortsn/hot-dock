@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DockerImagesComponent } from './component';
 import { TranslateModule } from '@ngx-translate/core';
 import { InfoModule } from '../module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomeComponent', () => {
   let component: DockerImagesComponent;
@@ -13,6 +14,7 @@ describe('HomeComponent', () => {
       declarations: [ ],
       imports: [
         InfoModule,
+        RouterTestingModule,
         TranslateModule.forRoot(),
       ]
     })

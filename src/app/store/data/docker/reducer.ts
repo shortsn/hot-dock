@@ -10,8 +10,7 @@ const images = (state: ImageInfo[] = [], action) =>
       DOCKER_FETCH_IMAGES_FAILED: _ => [],
       DOCKER_UPDATE_IMAGES: items => items,
 
-      DOCKER_REMOVE_IMAGE_SUCCESS: removed =>
-        state.filter(item => item.Id !== removed.Id)
+      DOCKER_REMOVE_IMAGE_SUCCESS: removed => state.filter(item => item.Id !== removed.Id)
     },
     _ => state
   )(action);
@@ -22,6 +21,8 @@ const containers = (state: ImageInfo[] = [], action) =>
       DOCKER_FETCH_CONTAINERS: _ => [],
       DOCKER_FETCH_CONTAINERS_FAILED: _ => [],
       DOCKER_UPDATE_CONTAINERS: items => items,
+
+      DOCKER_REMOVE_CONTAINER_SUCCESS: removed => state.filter(item => item.Id !== removed.Id)
     },
     _ => state
   )(action);

@@ -23,11 +23,9 @@ export class LayoutEpics {
       )
 
   private async getAlert(errorAction: ErrorAction): Promise<IAlert> {
-    const errorCode = errorAction.payload.code;
 
-    const message = errorCode === undefined
-      ? JSON.stringify(errorAction.payload)
-      : await this.translate.get(`error.code.${errorCode}`).toPromise();
+    const i18nKey = `error.${errorAction.type}`;
+    const message = await this.translate.get(i18nKey, { ...errorAction.payload }).toPromise();
 
     const action: IAlertAction = errorAction.meta && errorAction.meta.originalAction
       ? { key: 'alert.retry', value: errorAction.meta.originalAction }
