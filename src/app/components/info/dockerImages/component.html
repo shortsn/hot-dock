@@ -24,6 +24,7 @@
     <clr-dg-action-overflow>
       <button class="action-item" (click)="removeDockerImage(dockerImage)">{{ 'images.removeImage' | translate }}</button>
       <button class="action-item" (click)="createDockerContainer(dockerImage)">{{ 'images.createContainer' | translate }}</button>
+      <button class="action-item" routerLink="/info/containers" [queryParams]="{ filterByImageId: dockerImage.imageInfo.Id }">{{ 'images.derivedContainers' | translate }}</button>
     </clr-dg-action-overflow>
     <clr-dg-cell>{{ dockerImage.repository }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.tags }}</clr-dg-cell>

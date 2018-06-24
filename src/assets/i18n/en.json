@@ -29,7 +29,8 @@
   "images": {
     "nav": "Images",
     "removeImage": "Remove image",
-    "createContainer": "Create Container"
+    "createContainer": "Create container",
+    "derivedContainers": "Derived containers"
   },
   "language": {
     "en": "English",

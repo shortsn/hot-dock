@@ -17,7 +17,8 @@
   },
   "containers": {
     "nav": "Container",
-    "removeContainer": "Container löschen"
+    "removeContainer": "Container löschen",
+    "derivedContainers": "Abgeleitete Container"
   },
   "images": {
     "nav": "Images",

@@ -1,14 +1,15 @@
 <h1>{{ 'containers.nav' | translate }}</h1>
 
-<clr-datagrid>
+<clr-datagrid *ngIf="queryParams$ | async as queryParams">
+
   <clr-dg-column [clrDgField]="'id'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'names'">
       <ng-container *clrDgHideableColumn="{hidden: false}">Names</ng-container>
     </clr-dg-column>
-  <clr-dg-column [clrDgField]="'containerInfo.ImageID'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">ImageID</ng-container>
+  <clr-dg-column [clrDgField]="'containerInfo.ImageID'" [clrFilterValue]="queryParams?.filterByImageId">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Image</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'containerInfo.Command'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Command</ng-container>
@@ -16,8 +17,8 @@
   <clr-dg-column [clrDgField]="'containerInfo.Created'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Created</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'containerInfo.Status'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">Status</ng-container>
+  <clr-dg-column [clrDgField]="'containerInfo.State'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">State</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'containerInfo.Ports'">
     <ng-container *clrDgHideableColumn="{hidden: false}">Ports</ng-container>
@@ -40,7 +41,15 @@
     </clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Command }}</clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Created | date }}</clr-dg-cell>
-    <clr-dg-cell>{{ container.containerInfo.Status }}</clr-dg-cell>
+    <clr-dg-cell>
+      <ng-container [ngSwitch]="container.containerInfo.State">
+        <span *ngSwitchCase="'restarting'" class="label label-warning">{{ container.containerInfo.State }}</span>
+        <span *ngSwitchCase="'running'" class="label label-success">{{ container.containerInfo.State }}</span>
+        <span *ngSwitchCase="'paused'" class="label label-warning">{{ container.containerInfo.State }}</span>
+        <span *ngSwitchCase="'exited'" class="label label-danger">{{ container.containerInfo.State }}</span>
+        <span *ngSwitchDefault class="label" class="label label-info">{{ container.containerInfo.State }}</span>
+      </ng-container>
+    </clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Ports }}</clr-dg-cell>
   </clr-dg-row>
 

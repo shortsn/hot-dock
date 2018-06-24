@@ -4,7 +4,9 @@ images
     - create container
     - list containers (move and filter)
 
-container
+containers
+
+
 
 local registry
 

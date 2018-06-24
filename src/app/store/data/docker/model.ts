@@ -34,6 +34,8 @@ export class DockerImage {
   }
 }
 
+export type ContainerState = 'created' | 'restarting' | 'running' | 'paused' | 'exited';
+
 export class DockerContainer {
   public readonly id: string;
   public readonly names: string[];

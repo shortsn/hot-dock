@@ -6,12 +6,16 @@ import { Observable } from 'rxjs/Observable';
 import { DockerActions } from '../../../store/data/docker/actions';
 import { DockerContainer } from '../../../store/data/docker/model';
 import { dockerContainerSelector } from '../../../store/data/docker/selectors';
+import { QueryParams } from './model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DockerContainersComponent implements OnInit {
+
+  readonly queryParams$: Observable<QueryParams>;
 
   @select(dockerContainerSelector) readonly dockerContainers$: Observable<DockerContainer[]>;
 
@@ -26,6 +30,10 @@ export class DockerContainersComponent implements OnInit {
     ],
     sideNav: []
   })
+
+  constructor(route: ActivatedRoute) {
+    this.queryParams$ = route.queryParams;
+  }
 
   ngOnInit() {
     this.setNavItems();
