@@ -6,12 +6,14 @@ import { LayoutComponent } from './layout/component';
 import { RouterModule } from '@angular/router';
 
 import { ClarityIcons } from '@clr/icons';
-import { ClrShapeVM, ClrShapeHost } from '@clr/icons/shapes/technology-shapes';
+import '@clr/icons/shapes/technology-shapes';
+
+import { ShapeHotDock } from '../icons/hot-dock';
+
 import { DockerErrorComponent } from './docker-error/component';
 
 ClarityIcons.add({
-  ClrShapeVM,
-  ClrShapeHost,
+  'hot-dock': ShapeHotDock
 });
 
 @NgModule({
@@ -33,4 +35,4 @@ ClarityIcons.add({
     RouterModule
   ]
 })
-export class CoreModule {}
+export class CoreModule { }
