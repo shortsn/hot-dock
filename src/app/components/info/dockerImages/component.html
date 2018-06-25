@@ -29,7 +29,7 @@
     <clr-dg-cell>{{ dockerImage.repository }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.tags }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.imageInfo.Id | shortHash }}</clr-dg-cell>
-    <clr-dg-cell>{{ dockerImage.created | date }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerImage.imageInfo.Created * 1000 | date }}</clr-dg-cell>
     <clr-dg-cell>{{ dockerImage.imageInfo.Size | fileSize }}</clr-dg-cell>
   </clr-dg-row>
 

@@ -6,8 +6,6 @@ images
 
 containers
 
-
-
 local registry
 
   - create & setup
@@ -18,10 +16,8 @@ build
   - compodoc + deployment?
   - e2e test setup
   - optimized/treeshaked build for main process
-  - extract i18n script
 
   - search / fail on missing translations
-
 
 settings
   set docker host
