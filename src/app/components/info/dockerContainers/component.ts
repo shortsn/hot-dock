@@ -8,6 +8,7 @@ import { DockerContainer } from '../../../store/data/docker/model';
 import { dockerContainerSelector } from '../../../store/data/docker/selectors';
 import { QueryParams } from './model';
 import { ActivatedRoute } from '@angular/router';
+import subNav from '../subNav';
 
 @Component({
   templateUrl: './component.html',
@@ -24,10 +25,7 @@ export class DockerContainersComponent implements OnInit {
     DockerActions.DOCKER_REMOVE_CONTAINER(container.containerInfo)
 
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({
-    subNav: [
-      { key: 'images.nav', link: '/info/images' },
-      { key: 'containers.nav', link: '/info/containers' }
-    ],
+    subNav,
     sideNav: []
   })
 

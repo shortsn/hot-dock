@@ -8,6 +8,7 @@ import { LayoutActions } from '../../../store/controls/layout/actions';
 import { DockerImage } from '../../../store/data/docker/model';
 import { ActivatedRoute } from '@angular/router';
 import { QueryParams } from './model';
+import subNav from '../subNav';
 
 @Component({
   templateUrl: './component.html',
@@ -25,10 +26,7 @@ export class DockerImagesComponent implements OnInit {
     DockerActions.DOCKER_CREATE_CONTAINER({ imageId: image.imageInfo.Id })
 
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({
-    subNav: [
-      { key: 'images.nav', link: '/info/images' },
-      { key: 'containers.nav', link: '/info/containers' }
-    ],
+    subNav,
     sideNav: []
   })
 

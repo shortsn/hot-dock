@@ -6,6 +6,9 @@
     "nav": "Containers",
     "removeContainer": "Delete container"
   },
+  "dashboard": {
+    "nav": "Dashboard"
+  },
   "datagrid": {
     "noEntries": "No entries found",
     "pagination": "{{first}} - {{last}} of {{total}}",
