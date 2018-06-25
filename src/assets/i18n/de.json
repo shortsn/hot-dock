@@ -1,32 +1,32 @@
 {
-  "datagrid": {
-    "pagination": "{{first}} - {{last}} von {{total}}",
-    "selectColumns": "Spalten auswählen",
-    "selectAll": "Alle auswählen",
-    "noEntries": "Keine Einträge gefunden"
-  },
-  "error": {
-  },
   "alert": {
     "retry": "Wiederholen"
   },
-  "settings": {
-    "nav": "Einstellungen",
-    "appearance": "Erscheinungsbild",
-    "language": "Sprache"
-  },
   "containers": {
+    "derivedContainers": "Abgeleitete Container",
     "nav": "Container",
-    "removeContainer": "Container löschen",
-    "derivedContainers": "Abgeleitete Container"
+    "removeContainer": "Container löschen"
   },
+  "datagrid": {
+    "noEntries": "Keine Einträge gefunden",
+    "pagination": "{{first}} - {{last}} von {{total}}",
+    "selectAll": "Alle auswählen",
+    "selectColumns": "Spalten auswählen"
+  },
+  "error": {},
   "images": {
+    "createContainer": "Container erstellen",
+    "derivedContainers": "",
     "nav": "Images",
-    "removeImage": "Image löschen",
-    "createContainer": "Container erstellen"
+    "removeImage": "Image löschen"
   },
   "language": {
-    "en": "Englisch",
-    "de": "Deutsch"
+    "de": "Deutsch",
+    "en": "Englisch"
+  },
+  "settings": {
+    "appearance": "Erscheinungsbild",
+    "language": "Sprache",
+    "nav": "Einstellungen"
   }
 }

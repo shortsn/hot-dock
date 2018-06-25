@@ -1,39 +1,38 @@
 {
-  "nav": {
-    "images": "Images",
-    "containers": "Containers",
-    "settings": "Settings"
-  },
-
-  "datagrid": {
-    "pagination": "{{first}} - {{last}} of {{total}}",
-    "selectColumns": "Select columns",
-    "selectAll": "Select all",
-    "noEntries": "No entries found"
-  },
-  "error": {
-    "DOCKER_REMOVE_IMAGE_FAILED": "{{ json.message }}"
-  },
   "alert": {
     "retry": "Retry"
-  },
-  "settings": {
-    "nav": "Settings",
-    "appearance": "Appearance",
-    "language": "Language"
   },
   "containers": {
     "nav": "Containers",
     "removeContainer": "Delete container"
   },
+  "datagrid": {
+    "noEntries": "No entries found",
+    "pagination": "{{first}} - {{last}} of {{total}}",
+    "selectAll": "Select all",
+    "selectColumns": "Select columns"
+  },
+  "error": {
+    "DOCKER_REMOVE_IMAGE_FAILED": "{{ json.message }}"
+  },
   "images": {
-    "nav": "Images",
-    "removeImage": "Remove image",
     "createContainer": "Create container",
-    "derivedContainers": "Derived containers"
+    "derivedContainers": "Derived containers",
+    "nav": "Images",
+    "removeImage": "Remove image"
   },
   "language": {
-    "en": "English",
-    "de": "German"
+    "de": "German",
+    "en": "English"
+  },
+  "nav": {
+    "containers": "Containers",
+    "images": "Images",
+    "settings": "Settings"
+  },
+  "settings": {
+    "appearance": "Appearance",
+    "language": "Language",
+    "nav": "Settings"
   }
 }
