@@ -13,3 +13,6 @@ export const dockerContainerSelector = (state: IAppState) =>
 
 export const dockerHealthSelector = (state: IAppState) => dockerSelector(state).dockerHealth;
 export const isDockerHealthySelector = (state: IAppState) => dockerHealthSelector(state) === DockerHealth.HEALTHY;
+
+export const dockerInfoSelector = (state: IAppState) => dockerSelector(state).info;
+

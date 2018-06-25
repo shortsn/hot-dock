@@ -1,14 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { select, dispatch } from '@angular-redux/store';
-
-import { DockerActions } from '../../../store/data/docker/actions';
-import { dockerImagesSelector } from '../../../store/data/docker/selectors';
-import { LayoutActions } from '../../../store/controls/layout/actions';
-import { DockerImage } from '../../../store/data/docker/model';
+import { dispatch, select } from '@angular-redux/store';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QueryParams } from './model';
+import { Observable } from 'rxjs/Observable';
+import { LayoutActions } from '../../../store/controls/layout/actions';
+import { DockerActions } from '../../../store/data/docker/actions';
+import { DockerImage } from '../../../store/data/docker/model';
+import { dockerImagesSelector } from '../../../store/data/docker/selectors';
 import subNav from '../subNav';
+import { QueryParams } from './model';
 
 @Component({
   templateUrl: './component.html',

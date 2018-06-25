@@ -37,6 +37,10 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
           docker
             .listImages().then(result => store.dispatch(DockerActions.DOCKER_UPDATE_IMAGES(result))),
 
+        DOCKER_FETCH_SYSTEM_INFO: () =>
+          docker
+            .info().then(result => store.dispatch(DockerActions.DOCKER_UPDATE_SYSTEM_INFO(result))),
+
         DOCKER_FETCH_CONTAINERS: () =>
           docker
             .listContainers({ all: true }).then(result => store.dispatch(DockerActions.DOCKER_UPDATE_CONTAINERS(result))),

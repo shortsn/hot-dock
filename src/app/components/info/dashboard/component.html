@@ -1,1 +1,21 @@
 <h1>{{ 'dashboard.nav' | translate }}</h1>
+
+<ng-container *ngIf="dockerSystemInfo$ | async as dockerSystemInfo">
+
+{{ dockerSystemInfo | json }}
+
+
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Node {{ dockerSystemInfo.Architecture }}
+        </div>
+        <div class="card-block">
+
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+</ng-container>

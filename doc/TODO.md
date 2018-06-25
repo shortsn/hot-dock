@@ -23,4 +23,7 @@ settings
   set docker host
   save locally
 
+
+docker api -> graphiQL ?
+
 increase startup speed using app shell

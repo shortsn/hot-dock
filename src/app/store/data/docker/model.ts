@@ -10,6 +10,23 @@ export interface IDocker {
   dockerHealth: DockerHealth;
   images: ImageInfo[];
   containers: ContainerInfo[];
+  info: DockerSystemInfo;
+}
+
+export interface DockerSystemInfo {
+  Architecture: string;
+  Containers: number;
+  ContainersPaused: number;
+  ContainersRunning: number;
+  ContainersStopped: number;
+  Images: number;
+  DockerRootDir: string;
+  MemTotal: string;
+  MemoryLimit: string;
+  NCPU: string;
+  OSType: string;
+  OperatingSystem: string;
+  ServerVersion: string;
 }
 
 export class DockerImage {
