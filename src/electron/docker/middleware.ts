@@ -1,16 +1,16 @@
 import * as Docker from 'dockerode';
 import { DockerActions } from '../../app/store/data/docker/actions';
-import { Middleware, MiddlewareAPI } from 'redux';
-import { IpcAction, ErrorAction } from '../../ipc/redux/isAction';
+import { Middleware } from 'redux';
+import { ErrorAction } from '../../ipc/redux/isAction';
 import { timer } from 'rxjs/observable/timer';
 import { Subject } from 'rxjs/Subject';
 
 import { of } from 'rxjs/observable/of';
-import { switchMap, flatMap, startWith, map, tap, distinctUntilChanged } from 'rxjs/operators';
+import { switchMap, flatMap, map, tap, distinctUntilChanged } from 'rxjs/operators';
 import { DockerHealth } from '../../app/store/data/docker/model';
 
-export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
-  Middleware = options => store => {
+export const createDockerMiddleware: (options?: Docker.DockerOptions) => Middleware =
+  options => store => {
 
     const docker = new Docker(options);
     const healthCheck$ = new Subject<any>();
@@ -31,6 +31,9 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
       .subscribe();
 
     return next => (action: any) => {
+
+      const dispatched = next(action);
+
       const dockerAction = DockerActions.match<any, Promise<any>>({
 
         DOCKER_FETCH_IMAGES: () =>
@@ -75,7 +78,7 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) =>
         })
       );
 
-      return next(action);
+      return dispatched;
     };
 
   };

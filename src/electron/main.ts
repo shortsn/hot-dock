@@ -9,6 +9,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 
 import data from '../app/store/data/reducer';
 import session from '../app/store/session/reducer';
+import { createElectronApiMiddleware } from './api/middleware';
 
 let win: BrowserWindow, serve: boolean;
 const args = process.argv.slice(1);
@@ -29,6 +30,7 @@ const store = createStore(
   rootReducer,
   applyMiddleware(
     createDockerMiddleware(),
+    createElectronApiMiddleware(),
     forwardToRenderer // IMPORTANT! This goes last
   )
 );

@@ -12,10 +12,10 @@
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'created'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">Created</ng-container>
+    <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'datagrid.created' | translate }}</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'imageInfo.Size'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">Size</ng-container>
+    <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'images.size' | translate }}</ng-container>
   </clr-dg-column>
 
   <clr-dg-placeholder>{{ 'datagrid.noEntries' | translate }}</clr-dg-placeholder>

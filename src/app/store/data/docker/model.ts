@@ -53,11 +53,9 @@ export type ContainerState = 'created' | 'restarting' | 'running' | 'paused' | '
 export class DockerContainer {
   public readonly id: string;
   public readonly names: string[];
-  public readonly ports: string[];
 
   constructor(public containerInfo: ContainerInfo) {
     this.id = containerInfo.Id.substring(0, 12);
     this.names = containerInfo.Names.map(name => name.substring(1));
-    this.ports = containerInfo.Ports.map(port => `${port.PrivatePort}:${port.PublicPort}`);
   }
 }

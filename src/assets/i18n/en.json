@@ -3,13 +3,18 @@
     "retry": "Retry"
   },
   "containers": {
+    "command": "Command",
+    "names": "Name",
     "nav": "Containers",
-    "removeContainer": "Delete container"
+    "removeContainer": "Delete container",
+    "state": "State"
   },
   "dashboard": {
     "nav": "Dashboard"
   },
   "datagrid": {
+    "columnActions": "Actions",
+    "created": "Created",
     "noEntries": "No entries found",
     "pagination": "{{first}} - {{last}} of {{total}}",
     "selectAll": "Select all",
@@ -22,7 +27,8 @@
     "createContainer": "Create container",
     "derivedContainers": "Derived containers",
     "nav": "Images",
-    "removeImage": "Remove image"
+    "removeImage": "Remove image",
+    "size": "Size"
   },
   "language": {
     "de": "German",

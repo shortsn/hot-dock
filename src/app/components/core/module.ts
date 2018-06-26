@@ -1,16 +1,15 @@
-import { ClarityModule } from '@clr/angular';
-import { TranslateModule } from '@ngx-translate/core';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutComponent } from './layout/component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { ClarityModule } from '@clr/angular';
 import { ClarityIcons } from '@clr/icons';
-import '@clr/icons/shapes/technology-shapes';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { ShapeHotDock } from '../icons/hot-dock';
+import { DockerErrorComponent } from './dockerError/component';
+import { ExternalHrefDirective } from './externalHref/directive';
+import { LayoutComponent } from './layout/component';
 
-import { DockerErrorComponent } from './docker-error/component';
+import '@clr/icons/shapes/technology-shapes';
 
 ClarityIcons.add({
   'hot-dock': ShapeHotDock
@@ -19,7 +18,8 @@ ClarityIcons.add({
 @NgModule({
   declarations: [
     LayoutComponent,
-    DockerErrorComponent
+    DockerErrorComponent,
+    ExternalHrefDirective
   ],
   imports: [
     CommonModule,
@@ -28,6 +28,7 @@ ClarityIcons.add({
     RouterModule
   ],
   exports: [
+    ExternalHrefDirective,
     LayoutComponent,
     CommonModule,
     ClarityModule,

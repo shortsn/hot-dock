@@ -6,23 +6,24 @@
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'names'">
-      <ng-container *clrDgHideableColumn="{hidden: false}">Names</ng-container>
+      <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'containers.names' | translate }}</ng-container>
     </clr-dg-column>
   <clr-dg-column [clrDgField]="'containerInfo.ImageID'" [clrFilterValue]="queryParams?.filterByImageId">
     <ng-container *clrDgHideableColumn="{hidden: false}">Image</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'containerInfo.Command'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">Command</ng-container>
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{hidden: true}">{{ 'containers.command' | translate }}</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'containerInfo.Created'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">Created</ng-container>
+    <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'datagrid.created' | translate }}</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'containerInfo.State'">
-    <ng-container *clrDgHideableColumn="{hidden: false}">State</ng-container>
+    <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'containers.state' | translate }}</ng-container>
   </clr-dg-column>
-  <clr-dg-column [clrDgField]="'ports'">
+  <clr-dg-column>
     <ng-container *clrDgHideableColumn="{hidden: false}">Ports</ng-container>
   </clr-dg-column>
+  <clr-dg-column>{{ 'datagrid.columnActions' | translate }}</clr-dg-column>
 
   <clr-dg-placeholder>{{ 'datagrid.noEntries' | translate }}</clr-dg-placeholder>
 
@@ -50,7 +51,12 @@
         <span *ngSwitchDefault class="label" class="label label-info">{{ container.containerInfo.State }}</span>
       </ng-container>
     </clr-dg-cell>
-    <clr-dg-cell>{{ container.ports }}</clr-dg-cell>
+    <clr-dg-cell>
+      <a *ngFor="let port of container.containerInfo.Ports" appExternalHref
+         [href]="'http://' + port.IP + ':' + port.PublicPort">{{ port.PrivatePort }}:{{ port.PublicPort }}
+      </a>
+    </clr-dg-cell>
+    <clr-dg-cell></clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer>
