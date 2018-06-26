@@ -17,7 +17,8 @@
     "icon": "dist",
     "publish": ["github"],
     "target": [
-      "portable"
+      "portable",
+      "nsis-web"
     ]
   },
   "mac": {
