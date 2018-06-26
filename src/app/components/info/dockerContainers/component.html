@@ -20,7 +20,7 @@
   <clr-dg-column [clrDgField]="'containerInfo.State'">
     <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'containers.state' | translate }}</ng-container>
   </clr-dg-column>
-  <clr-dg-column>
+  <clr-dg-column [style.width.px]="140">
     <ng-container *clrDgHideableColumn="{hidden: false}">Ports</ng-container>
   </clr-dg-column>
   <clr-dg-column>{{ 'datagrid.columnActions' | translate }}</clr-dg-column>
@@ -56,7 +56,20 @@
          [href]="'http://' + port.IP + ':' + port.PublicPort">{{ port.PrivatePort }}:{{ port.PublicPort }}
       </a>
     </clr-dg-cell>
-    <clr-dg-cell></clr-dg-cell>
+    <clr-dg-cell>
+      <a *ngIf="container.containerInfo.State === 'running' || container.containerInfo.State === 'paused'" [title]="'containers.stop' | translate" class="grid-action">
+        <clr-icon shape="stop"></clr-icon>
+      </a>
+      <a *ngIf="container.containerInfo.State === 'running'" [title]="'containers.pause' | translate" class="grid-action">
+        <clr-icon shape="pause"></clr-icon>
+      </a>
+      <a *ngIf="container.containerInfo.State !== 'running'" [title]="'containers.start' | translate" class="grid-action">
+        <clr-icon shape="play"></clr-icon>
+      </a>
+      <a *ngIf="container.containerInfo.State !== 'running'" [title]="'containers.removeContainer' | translate" (click)="removeDockerContainer(container)" class="grid-action">
+        <clr-icon shape="trash"></clr-icon>
+      </a>
+    </clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer>

@@ -10,9 +10,11 @@ import { ExternalHrefDirective } from './externalHref/directive';
 import { LayoutComponent } from './layout/component';
 
 import '@clr/icons/shapes/technology-shapes';
+import '@clr/icons/shapes/essential-shapes';
+import '@clr/icons/shapes/media-shapes';
 
 ClarityIcons.add({
-  'hot-dock': ShapeHotDock
+  'hot-dock': ShapeHotDock,
 });
 
 @NgModule({

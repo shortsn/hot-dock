@@ -11,6 +11,7 @@ import { QueryParams } from './model';
 
 @Component({
   templateUrl: './component.html',
+  styleUrls: ['./component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DockerContainersComponent implements OnInit {
