@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from 'redux';
 import { IDocker, DockerHealth, DockerSystemInfo } from './model';
 import { DockerActions } from './actions';
-import { ImageInfo } from 'dockerode';
+import { ImageInfo, ContainerInfo } from 'dockerode';
 
 const images = (state: ImageInfo[] = [], action) =>
   DockerActions.match(
@@ -15,14 +15,14 @@ const images = (state: ImageInfo[] = [], action) =>
     _ => state
   )(action);
 
-const containers = (state: ImageInfo[] = [], action) =>
+const containers = (state: ContainerInfo[] = [], action) =>
   DockerActions.match(
     {
       DOCKER_FETCH_CONTAINERS: () => [],
       DOCKER_FETCH_CONTAINERS_FAILED: () => [],
       DOCKER_UPDATE_CONTAINERS: items => items,
 
-      DOCKER_REMOVE_CONTAINER_SUCCESS: removed => state.filter(item => item.Id !== removed.Id)
+      DOCKER_REMOVE_CONTAINER_SUCCESS: id => state.filter(item => item.Id !== id),
     },
     _ => state
   )(action);

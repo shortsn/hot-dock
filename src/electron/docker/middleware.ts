@@ -59,11 +59,43 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) => Middlew
 
         DOCKER_CREATE_CONTAINER: ({ imageId }) => docker.createContainer({ Image: imageId }),
 
-        DOCKER_REMOVE_CONTAINER: containerInfo =>
+        DOCKER_START_CONTAINER: containerId =>
           docker
-            .getContainer(containerInfo.Id)
+            .getContainer(containerId)
+            .start()
+            .then(_ => store.dispatch(DockerActions.DOCKER_START_CONTAINER_SUCCESS(containerId))),
+
+        DOCKER_PAUSE_CONTAINER: containerId =>
+          docker
+            .getContainer(containerId)
+            .pause()
+            .then(_ => store.dispatch(DockerActions.DOCKER_PAUSE_CONTAINER_SUCCESS(containerId))),
+
+        DOCKER_UNPAUSE_CONTAINER: containerId =>
+          docker
+            .getContainer(containerId)
+            .unpause()
+            .then(_ => {
+              store.dispatch(DockerActions.DOCKER_UNPAUSE_CONTAINER_SUCCESS(containerId));
+            }),
+
+        DOCKER_STOP_CONTAINER: containerId =>
+          docker
+            .getContainer(containerId)
+            .stop()
+            .then(_ => store.dispatch(DockerActions.DOCKER_STOP_CONTAINER_SUCCESS(containerId))),
+
+        DOCKER_KILL_CONTAINER: containerId =>
+          docker
+            .getContainer(containerId)
+            .kill()
+            .then(_ => store.dispatch(DockerActions.DOCKER_KILL_CONTAINER_SUCCESS(containerId))),
+
+        DOCKER_REMOVE_CONTAINER: containerId =>
+          docker
+            .getContainer(containerId)
             .remove()
-            .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_CONTAINER_SUCCESS(containerInfo))),
+            .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_CONTAINER_SUCCESS(containerId))),
 
       }, () => Promise.resolve())(action);
 

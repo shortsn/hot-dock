@@ -1,10 +1,13 @@
 images
 
   - actions
-    - create container
-    - list containers (move and filter)
+    - ~~create container~~
+    - create image
+    - list containers (move and filter),
+    - create wizard
 
 containers
+  - create wizard
 
 local registry
 

@@ -6,8 +6,8 @@
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'names'">
-      <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'containers.names' | translate }}</ng-container>
-    </clr-dg-column>
+    <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'containers.names' | translate }}</ng-container>
+  </clr-dg-column>
   <clr-dg-column [clrDgField]="'containerInfo.ImageID'" [clrFilterValue]="queryParams?.filterByImageId">
     <ng-container *clrDgHideableColumn="{hidden: false}">Image</ng-container>
   </clr-dg-column>
@@ -36,8 +36,8 @@
     <clr-dg-cell>{{ container.id }}</clr-dg-cell>
     <clr-dg-cell>{{ container.names }}</clr-dg-cell>
     <clr-dg-cell>
-      <a routerLink="/info/images" [queryParams]="{ filterById: container.containerInfo.ImageID }" >
-      {{ container.containerInfo.ImageID | shortHash }}
+      <a routerLink="/info/images" [queryParams]="{ filterById: container.containerInfo.ImageID }">
+        {{ container.containerInfo.ImageID | shortHash }}
       </a>
     </clr-dg-cell>
     <clr-dg-cell>{{ container.containerInfo.Command }}</clr-dg-cell>
@@ -52,23 +52,36 @@
       </ng-container>
     </clr-dg-cell>
     <clr-dg-cell>
-      <a *ngFor="let port of container.containerInfo.Ports" appExternalHref
-         [href]="'http://' + port.IP + ':' + port.PublicPort">{{ port.PrivatePort }}:{{ port.PublicPort }}
+      <a *ngFor="let port of container.containerInfo.Ports" appExternalHref [href]="'http://' + port.IP + ':' + port.PublicPort">{{ port.PrivatePort }}:{{ port.PublicPort }}
       </a>
     </clr-dg-cell>
     <clr-dg-cell>
-      <a *ngIf="container.containerInfo.State === 'running' || container.containerInfo.State === 'paused'" [title]="'containers.stop' | translate" class="grid-action">
-        <clr-icon shape="stop"></clr-icon>
-      </a>
-      <a *ngIf="container.containerInfo.State === 'running'" [title]="'containers.pause' | translate" class="grid-action">
+
+      <a *ngIf="container.containerInfo.State === 'running'" [title]="'containers.pause' | translate" class="grid-action" (click)="pauseDockerContainer(container)">
         <clr-icon shape="pause"></clr-icon>
       </a>
-      <a *ngIf="container.containerInfo.State !== 'running'" [title]="'containers.start' | translate" class="grid-action">
+
+      <a *ngIf="container.containerInfo.State === 'paused'" [title]="'containers.unpause' | translate" class="grid-action" (click)="unpauseDockerContainer(container)">
         <clr-icon shape="play"></clr-icon>
       </a>
-      <a *ngIf="container.containerInfo.State !== 'running'" [title]="'containers.removeContainer' | translate" (click)="removeDockerContainer(container)" class="grid-action">
+
+      <a *ngIf="container.containerInfo.State !== 'running' && container.containerInfo.State !== 'paused'" [title]="'containers.start' | translate" class="grid-action" (click)="startDockerContainer(container)">
+        <clr-icon shape="play"></clr-icon>
+      </a>
+
+      <ng-container *ngIf="container.containerInfo.State === 'running' || container.containerInfo.State === 'paused'">
+        <a [title]="'containers.stop' | translate" class="grid-action" (click)="stopDockerContainer(container)">
+          <clr-icon shape="stop"></clr-icon>
+        </a>
+        <a [title]="'containers.kill' | translate" class="grid-action" (click)="killDockerContainer(container)">
+          <clr-icon shape="power"></clr-icon>
+        </a>
+      </ng-container>
+
+      <a *ngIf="container.containerInfo.State !== 'running'" [title]="'containers.removeContainer' | translate" class="grid-action" (click)="removeDockerContainer(container)">
         <clr-icon shape="trash"></clr-icon>
       </a>
+
     </clr-dg-cell>
   </clr-dg-row>
 
