@@ -6,7 +6,6 @@ import { ImageInfo, ContainerInfo } from 'dockerode';
 const images = (state: ImageInfo[] = [], action) =>
   DockerActions.match(
     {
-      DOCKER_FETCH_IMAGES: () => [],
       DOCKER_FETCH_IMAGES_FAILED: () => [],
       DOCKER_UPDATE_IMAGES: items => items,
 
@@ -18,7 +17,6 @@ const images = (state: ImageInfo[] = [], action) =>
 const containers = (state: ContainerInfo[] = [], action) =>
   DockerActions.match(
     {
-      DOCKER_FETCH_CONTAINERS: () => [],
       DOCKER_FETCH_CONTAINERS_FAILED: () => [],
       DOCKER_UPDATE_CONTAINERS: items => items,
 
