@@ -13,3 +13,4 @@ export class DockerContainersEpics {
         filter(DockerActions.is.DOCKER_EVENT),
         filter(_ => false)
       )
+}
