@@ -1,4 +1,4 @@
-import { Action, combineReducers, Reducer } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 import { ILocation } from './model';
 import { routerReducer } from '@angular-redux/router';
 

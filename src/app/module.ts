@@ -24,8 +24,6 @@ import { initializeStore } from '../environments/environment';
 
 import { CoreModule } from './components/core/module';
 import { LayoutEpics } from './store/controls/layout/epics';
-import { DockerActions } from './store/data/docker/actions';
-import { DockerContainersEpics } from './store/controls/dockerContainers/epics';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -55,20 +53,18 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     SessionEpics,
     LayoutEpics,
-    DockerContainersEpics,
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(
     ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter,
-    sessionEpics: SessionEpics, layoutEpics: LayoutEpics, dockerContainersEpics: DockerContainersEpics,
+    sessionEpics: SessionEpics, layoutEpics: LayoutEpics,
     translate: TranslateService
   ) {
 
     const middlewares = [
       createEpicMiddleware(sessionEpics.setLanguage),
-      createEpicMiddleware(dockerContainersEpics.loadContainers),
       createEpicMiddleware(layoutEpics.showError)
     ];
 
@@ -76,7 +72,5 @@ export class AppModule {
 
     translate.setDefaultLang(initialState.session.language.toString());
     ngReduxRouter.initialize(routerSelector);
-
-    ngRedux.dispatch(DockerActions.DOCKER_START_HEALTHCHECK(10000));
   }
 }

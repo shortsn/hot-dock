@@ -1,34 +1,92 @@
+import { app } from 'electron';
+
 import * as Docker from 'dockerode';
 import { DockerActions } from '../../app/store/data/docker/actions';
 import { Middleware } from 'redux';
 import { ErrorAction } from '../../ipc/redux/isAction';
-import { timer } from 'rxjs/observable/timer';
-import { Subject } from 'rxjs/Subject';
 
-import { of } from 'rxjs/observable/of';
-import { switchMap, flatMap, map, tap, distinctUntilChanged } from 'rxjs/operators';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { tap, map, last, first, takeUntil, publish, refCount, distinctUntilChanged } from 'rxjs/operators';
 import { DockerHealth } from '../../app/store/data/docker/model';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+
+const willQuit$ = fromEvent(app, 'will-quit').pipe(
+  first(),
+  publish(),
+  refCount()
+);
+
+const streamToObservable = (stream: NodeJS.ReadableStream): Observable<Buffer> =>
+  new Observable<Buffer>(subscriber => {
+    const endHandler = () => subscriber.complete();
+    const errorHandler = (e: Error) => subscriber.error(e);
+    const dataHandler = (data: Buffer) => subscriber.next(data);
+
+    stream.addListener('close', endHandler);
+    stream.addListener('end', endHandler);
+    stream.addListener('error', errorHandler);
+    stream.addListener('data', dataHandler);
+
+    return () => {
+      stream.removeListener('close', endHandler);
+      stream.removeListener('end', endHandler);
+      stream.removeListener('error', errorHandler);
+      stream.removeListener('data', dataHandler);
+    };
+  });
+
+const monitorDockerEvents = async (store: { dispatch: (action) => any; }, docker: Docker) => {
+
+  let terminate = false;
+
+  willQuit$.pipe(
+    tap(_ => terminate = true),
+    takeUntil(willQuit$)
+  )
+  .subscribe();
+
+  const dockerHealth$ = new Subject<DockerHealth>();
+
+  dockerHealth$.pipe(
+    distinctUntilChanged(),
+    map(DockerActions.DOCKER_SET_HEALTH),
+    tap(action => store.dispatch(action)),
+    takeUntil(willQuit$)
+  )
+  .subscribe();
+
+  while (!terminate) {
+
+    try {
+
+      await docker.getEvents()
+        .then(async stream => {
+          dockerHealth$.next(DockerHealth.HEALTHY);
+          await streamToObservable(stream)
+            .pipe(
+              map(buffer => DockerActions.DOCKER_EVENT(JSON.parse(buffer.toString('UTF-8')))),
+              tap(action => store.dispatch(action)),
+              last(),
+              takeUntil(willQuit$)
+            ).toPromise().catch(_ => dockerHealth$.next(DockerHealth.UNHEALTHY));
+        })
+        .catch(_ => dockerHealth$.next(DockerHealth.UNHEALTHY));
+
+    } finally {
+      dockerHealth$.next(DockerHealth.UNHEALTHY);
+    }
+    await new Promise(resolve => setTimeout(resolve, 5000));
+  }
+
+};
 
 export const createDockerMiddleware: (options?: Docker.DockerOptions) => Middleware =
   options => store => {
 
     const docker = new Docker(options);
-    const healthCheck$ = new Subject<any>();
 
-    healthCheck$
-      .pipe(
-        switchMap<any, DockerHealth>(action => DockerActions.is.DOCKER_START_HEALTHCHECK(action)
-          ? timer(0, action.payload)
-              .pipe(
-                flatMap(_ => docker.ping().then(() => DockerHealth.HEALTHY, () => DockerHealth.UNHEALTHY)),
-              )
-          : of(DockerHealth.UNKNOWN)
-        ),
-        distinctUntilChanged(),
-        map(DockerActions.DOCKER_SET_HEALTH),
-        tap(action => store.dispatch(action)),
-      )
-      .subscribe();
+    monitorDockerEvents(store, docker);
 
     return next => (action: any) => {
 
@@ -53,9 +111,6 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) => Middlew
             .getImage(imageInfo.Id)
             .remove()
             .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_IMAGE_SUCCESS(imageInfo))),
-
-        DOCKER_START_HEALTHCHECK: () => Promise.resolve(healthCheck$.next(action)),
-        DOCKER_STOP_HEALTHCHECK: () => Promise.resolve(healthCheck$.next(action)),
 
         DOCKER_CREATE_CONTAINER: ({ imageId }) => docker.createContainer({ Image: imageId }),
 

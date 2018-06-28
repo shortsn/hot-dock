@@ -39,7 +39,6 @@ const dockerHealth = (state: DockerHealth = DockerHealth.UNKNOWN, action) =>
   DockerActions.match(
     {
       DOCKER_SET_HEALTH: health => health,
-      DOCKER_STOP_HEALTHCHECK: () => DockerHealth.UNKNOWN
     },
     _ => state
   )(action);
