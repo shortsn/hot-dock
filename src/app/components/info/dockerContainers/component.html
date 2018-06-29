@@ -52,8 +52,7 @@
       </ng-container>
     </clr-dg-cell>
     <clr-dg-cell>
-      <a *ngFor="let port of container.containerInfo.Ports" appExternalHref [href]="'http://' + port.IP + ':' + port.PublicPort">{{ port.PrivatePort }}:{{ port.PublicPort }}
-      </a>
+      <a *ngFor="let port of container.containerInfo.Ports" appExternalHref [href]="buildUrl(port)">{{ port.PrivatePort }}:{{ port.PublicPort }}</a>
     </clr-dg-cell>
     <clr-dg-cell>
 

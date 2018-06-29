@@ -8,6 +8,7 @@ import { DockerContainer } from '../../../store/data/docker/model';
 import { dockerContainerSelector } from '../../../store/data/docker/selectors';
 import subNav from '../subNav';
 import { QueryParams } from './model';
+import { Port } from 'dockerode';
 
 @Component({
   templateUrl: './component.html',
@@ -53,5 +54,8 @@ export class DockerContainersComponent implements OnInit {
     this.setNavItems();
     this.fetchDockerContainers();
   }
+
+  buildUrl = (dockerPort: Port): string =>
+    `http://${dockerPort.IP === '0.0.0.0' ? '127.0.0.1' : dockerPort.IP}:${dockerPort.PublicPort}`
 
 }
