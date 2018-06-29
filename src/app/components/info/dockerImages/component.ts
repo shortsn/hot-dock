@@ -35,7 +35,6 @@ export class DockerImagesComponent implements OnInit {
 
   ngOnInit() {
     this.setNavItems();
-    this.fetchDockerImages();
   }
 
 }
