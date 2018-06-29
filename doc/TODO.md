@@ -30,3 +30,6 @@ settings
 docker api -> graphiQL ?
 
 increase startup speed using app shell
+show window on ready-to-show (https://github.com/electron/electron/blob/master/docs/api/browser-window.md#showing-window-gracefully)
+
+docker health => icon
