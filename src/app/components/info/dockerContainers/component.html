@@ -30,7 +30,7 @@
   <clr-dg-row *clrDgItems="let container of dockerContainers$ | async">
 
     <clr-dg-action-overflow>
-      <button class="action-item" (click)="removeDockerContainer(container)">{{ 'containers.removeContainer' | translate }}</button>
+      <button class="action-item" (click)="removeDockerContainer(container)">{{ 'containers.remove' | translate }}</button>
     </clr-dg-action-overflow>
 
     <clr-dg-cell>{{ container.id }}</clr-dg-cell>
@@ -77,7 +77,7 @@
         </a>
       </ng-container>
 
-      <a *ngIf="container.containerInfo.State !== 'running'" [title]="'containers.removeContainer' | translate" class="grid-action" (click)="removeDockerContainer(container)">
+      <a *ngIf="container.containerInfo.State !== 'running'" [title]="'containers.remove' | translate" class="grid-action" (click)="removeDockerContainer(container)">
         <clr-icon shape="trash"></clr-icon>
       </a>
 

@@ -4,10 +4,15 @@
   },
   "containers": {
     "command": "Command",
+    "kill": "Kill",
     "names": "Name",
     "nav": "Containers",
-    "removeContainer": "Delete container",
-    "state": "State"
+    "pause": "Pause",
+    "remove": "Remove",
+    "start": "Start",
+    "state": "State",
+    "stop": "Stop",
+    "unpause": "Resume"
   },
   "dashboard": {
     "nav": "Dashboard"
@@ -27,7 +32,7 @@
     "createContainer": "Create container",
     "derivedContainers": "Derived containers",
     "nav": "Images",
-    "removeImage": "Remove image",
+    "remove": "Remove image",
     "size": "Size"
   },
   "language": {

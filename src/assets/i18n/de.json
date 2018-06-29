@@ -4,11 +4,15 @@
   },
   "containers": {
     "command": "Befehl",
-    "derivedContainers": "Abgeleitete Container",
+    "kill": "Abschießen",
     "names": "Name",
     "nav": "Container",
-    "removeContainer": "Container löschen",
-    "state": "Status"
+    "pause": "Pausieren",
+    "remove": "Löschen",
+    "start": "Starten",
+    "state": "Status",
+    "stop": "Stoppen",
+    "unpause": "Fortsetzen"
   },
   "dashboard": {
     "nav": "Dashboard"
@@ -24,9 +28,9 @@
   "error": {},
   "images": {
     "createContainer": "Container erstellen",
-    "derivedContainers": "",
+    "derivedContainers": "Abgeleitete Container",
     "nav": "Images",
-    "removeImage": "Image löschen",
+    "remove": "Image löschen",
     "size": "Größe"
   },
   "language": {
