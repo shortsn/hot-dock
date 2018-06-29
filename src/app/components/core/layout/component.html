@@ -15,7 +15,10 @@
   <header class="header-6">
 
     <div class="branding">
-      <clr-icon shape="hot-dock" size="100" [style.margin-top.px]="-20"></clr-icon>
+      <ng-container [ngSwitch]="isDockerHealthy$ | async">
+        <clr-icon *ngSwitchCase="true" shape="hot-dock" size="100" [style.margin-top.px]="-20"></clr-icon>
+        <clr-icon *ngSwitchCase="false" shape="hot-dock-sad" size="100" [style.margin-top.px]="-20"></clr-icon>
+      </ng-container>
       <span class="title">Hot Dock</span>
     </div>
 

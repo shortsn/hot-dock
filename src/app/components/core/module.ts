@@ -12,9 +12,11 @@ import { LayoutComponent } from './layout/component';
 import '@clr/icons/shapes/technology-shapes';
 import '@clr/icons/shapes/essential-shapes';
 import '@clr/icons/shapes/media-shapes';
+import { ShapeHotDockSad } from '../icons/hot-dock-sad';
 
 ClarityIcons.add({
   'hot-dock': ShapeHotDock,
+  'hot-dock-sad': ShapeHotDockSad,
 });
 
 @NgModule({
