@@ -45,11 +45,16 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
+    show: false,
     webPreferences: {
       nodeIntegration: false,
       sandbox: true,
       preload: path.join(__dirname, 'preload.js')
     }
+  });
+
+  win.once('ready-to-show', () => {
+    win.show();
   });
 
   if (serve) {
