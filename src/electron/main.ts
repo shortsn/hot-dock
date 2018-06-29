@@ -37,14 +37,9 @@ const store = createStore(
 replayActionMain(store);
 
 function createWindow() {
-  const size = screen.getPrimaryDisplay().workAreaSize;
-
-  // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width,
-    height: size.height,
+    width: 1024,
+    height: 768,
     show: false,
     webPreferences: {
       nodeIntegration: false,
