@@ -9,6 +9,25 @@ import { dockerContainerSelector } from '../../../store/data/docker/selectors';
 import subNav from '../subNav';
 import { QueryParams } from './model';
 import { Port } from 'dockerode';
+import { ClrDatagridStringFilterInterface } from '@clr/angular';
+
+class ContainerStateFilter implements ClrDatagridStringFilterInterface<DockerContainer> {
+  accepts(container: DockerContainer, search: string): boolean {
+    const state = container.containerInfo.State;
+    console.log(state);
+    console.log(search);
+    switch (search) {
+      case '~running':
+          return state === 'running' || state === 'restarting';
+      case '~paused':
+        return state === 'paused';
+      case '~stopped':
+        return state === 'exited' || state === 'created';
+      default:
+        return state.startsWith(search);
+    }
+  }
+}
 
 @Component({
   templateUrl: './component.html',
@@ -16,6 +35,8 @@ import { Port } from 'dockerode';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DockerContainersComponent implements OnInit {
+
+  readonly containerStateFilter = new ContainerStateFilter();
 
   readonly queryParams$: Observable<QueryParams>;
 

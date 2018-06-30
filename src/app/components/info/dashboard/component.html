@@ -3,56 +3,11 @@
 <ng-container *ngIf="dockerSystemInfo$ | async as dockerSystemInfo">
 
   <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-block">
-          <div class="card-title">
-            Block
-          </div>
-          <div class="card-text">
-            <table class="table table-vertical table-noborder">
-              <tbody>
-                <tr>
-                  <th align="left">Images </th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>{{ dockerSystemInfo.Images }}</td>
-                </tr>
-                <tr>
-                  <th align="left">Containers</th>
-                  <td>
-                    <a routerLink="/info/containers" class="label label-success clickable">
-                      running
-                      <span class="badge badge-success">{{ dockerSystemInfo.ContainersRunning }}</span>
-                    </a>
-                  </td>
-                  <td>
-                    <a routerLink="/info/containers" class="label label-warning clickable">
-                      paused
-                      <span class="badge badge-warning">{{ dockerSystemInfo.ContainersPaused }}</span>
-                    </a>
-                  </td>
-                  <td>
-                    <a routerLink="/info/containers" class="label label-danger clickable">
-                      stopped
-                      <span class="badge badge-danger">{{ dockerSystemInfo.ContainersStopped }}</span>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="card">
         <div class="card-block">
-          <div class="card-title">
-            Block
-          </div>
+            <div class="card-title">{{ 'images.nav' | translate }}</div>
           <div class="card-text">
             ...
           </div>
@@ -63,6 +18,40 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-title">{{ 'containers.nav' | translate }}</div>
+          <div class="card-text">
+
+            <a routerLink="/info/containers" [queryParams]="{ filterByState: '~running' }"
+              class="label label-success clickable">
+              running
+              <span class="badge badge-success">{{ dockerSystemInfo.ContainersRunning }}</span>
+            </a>
+            <a routerLink="/info/containers" [queryParams]="{ filterByState: '~paused' }"
+              class="label label-warning clickable">
+              paused
+              <span class="badge badge-warning">{{ dockerSystemInfo.ContainersPaused }}</span>
+            </a>
+            <a routerLink="/info/containers" [queryParams]="{ filterByState: '~stopped' }"
+              class="label label-danger clickable">
+              stopped
+              <span class="badge badge-danger">{{ dockerSystemInfo.ContainersStopped }}</span>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="card-footer">
+            <button class="btn btn-sm btn-link">create new</button>
+          </div>
+
+      </div>
+    </div>
+
+
 
     <div class="col-md-4">
       <div class="card">
@@ -81,7 +70,5 @@
       </div>
     </div>
   </div>
-
-  {{ dockerSystemInfo | json }}
 
 </ng-container>

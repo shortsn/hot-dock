@@ -18,6 +18,7 @@
     <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'datagrid.created' | translate }}</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'containerInfo.State'">
+    <clr-dg-string-filter [clrDgStringFilter]="containerStateFilter" [clrFilterValue]="queryParams?.filterByState"></clr-dg-string-filter>
     <ng-container *clrDgHideableColumn="{hidden: false}">{{ 'containers.state' | translate }}</ng-container>
   </clr-dg-column>
   <clr-dg-column [style.width.px]="140">
