@@ -9,6 +9,7 @@ import { DockerSystemInfo } from '../../../store/data/docker/model';
 
 @Component({
   templateUrl: './component.html',
+  styleUrls: ['./component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {

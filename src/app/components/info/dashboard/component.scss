@@ -1,0 +1,12 @@
+table {
+  table-layout: auto;
+  width: 100%;
+}
+
+table td{
+  white-space: nowrap;
+}
+
+table td:last-child{
+  width:100%;
+}
