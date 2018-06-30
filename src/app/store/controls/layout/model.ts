@@ -9,6 +9,7 @@ export interface ILayout {
   alerts: IAlert[];
   subNav: INavItem[];
   sideNav: INavItem[];
+  dispatchOnRefresh: Action[];
 }
 
 export type AlertType = 'danger' | 'warning' | 'info' | 'success';

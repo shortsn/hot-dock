@@ -24,9 +24,6 @@ import { initializeStore } from '../environments/environment';
 
 import { CoreModule } from './components/core/module';
 import { LayoutEpics } from './store/controls/layout/epics';
-import { DockerContainersComponentEpics } from './store/controls/dockerContainers/epics';
-import { DockerImagesComponentEpics } from './store/controls/dockerImages/epics';
-import { DashboardComponentEpics } from './store/controls/info/epics';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,9 +53,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     SessionEpics,
     LayoutEpics,
-    DashboardComponentEpics,
-    DockerContainersComponentEpics,
-    DockerImagesComponentEpics,
   ],
   bootstrap: [AppComponent]
 })
@@ -66,16 +60,13 @@ export class AppModule {
   constructor(
     ngRedux: NgRedux<IAppState>, ngReduxRouter: NgReduxRouter,
     sessionEpics: SessionEpics, layoutEpics: LayoutEpics,
-    dashboardEpics: DashboardComponentEpics, containersEpics: DockerContainersComponentEpics, imagesEpics: DockerImagesComponentEpics,
     translate: TranslateService
   ) {
 
     const middlewares = [
       createEpicMiddleware(sessionEpics.setLanguage),
       createEpicMiddleware(layoutEpics.showError),
-      createEpicMiddleware(dashboardEpics.loadInfo),
-      createEpicMiddleware(containersEpics.loadContainers),
-      createEpicMiddleware(imagesEpics.loadImages)
+      createEpicMiddleware(layoutEpics.refresh),
     ];
 
     const initialState = initializeStore(ngRedux, rootReducer, middlewares, []);

@@ -20,8 +20,13 @@ export class DashboardComponent implements OnInit {
     sideNav: []
   })
 
+  @dispatch() readonly subscribeData = () => LayoutActions.DISPATCH_ON_REFRESH([
+    DockerActions.DOCKER_FETCH_SYSTEM_INFO({})
+  ])
+
   ngOnInit() {
     this.setNavItems();
+    this.subscribeData();
   }
 
 }

@@ -28,12 +28,17 @@ export class DockerImagesComponent implements OnInit {
     sideNav: []
   })
 
+  @dispatch() readonly subscribeData = () => LayoutActions.DISPATCH_ON_REFRESH([
+    DockerActions.DOCKER_FETCH_IMAGES({})
+  ])
+
   constructor(route: ActivatedRoute) {
     this.queryParams$ = route.queryParams;
   }
 
   ngOnInit() {
     this.setNavItems();
+    this.subscribeData();
   }
 
 }

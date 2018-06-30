@@ -44,12 +44,17 @@ export class DockerContainersComponent implements OnInit {
     sideNav: []
   })
 
+  @dispatch() readonly subscribeData = () => LayoutActions.DISPATCH_ON_REFRESH([
+    DockerActions.DOCKER_FETCH_CONTAINERS({})
+  ])
+
   constructor(route: ActivatedRoute) {
     this.queryParams$ = route.queryParams;
   }
 
   ngOnInit() {
     this.setNavItems();
+    this.subscribeData();
   }
 
   buildUrl = (dockerPort: Port): string =>

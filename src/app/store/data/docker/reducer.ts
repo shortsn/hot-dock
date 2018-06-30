@@ -28,7 +28,6 @@ const containers = (state: ContainerInfo[] = [], action) =>
 const info = (state: DockerSystemInfo = null, action) =>
   DockerActions.match(
     {
-      DOCKER_FETCH_SYSTEM_INFO: () => null,
       DOCKER_FETCH_SYSTEM_INFO_FAILED: () => null,
       DOCKER_UPDATE_SYSTEM_INFO: dockerInfo => dockerInfo,
     },
