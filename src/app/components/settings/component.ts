@@ -19,8 +19,11 @@ export class SettingsComponent implements OnInit {
   @dispatch() readonly changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({ sideNav: [], subNav: [] });
 
+  @dispatch() readonly unSubscribeData = () => LayoutActions.DISPATCH_ON_REFRESH([]);
+
   ngOnInit(): void {
     this.setNavItems();
+    this.unSubscribeData();
   }
 
 }

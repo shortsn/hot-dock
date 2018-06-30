@@ -1,5 +1,5 @@
 import { combineReducers, Reducer } from 'redux';
-import { IDocker, DockerHealth, DockerSystemInfo } from './model';
+import { IDocker, DockerHealth, DockerSystemInfo, DockerEvent } from './model';
 import { DockerActions } from './actions';
 import { ImageInfo, ContainerInfo } from 'dockerode';
 
@@ -43,11 +43,20 @@ const dockerHealth = (state: DockerHealth = DockerHealth.UNKNOWN, action) =>
     _ => state
   )(action);
 
+const recentEvents = (state: DockerEvent[] = [], action) =>
+  DockerActions.match(
+    {
+      DOCKER_EVENT: event => [event, ...state.slice(0, Math.min(state.length, 19))],
+    },
+    _ => state
+  )(action);
+
 const docker: Reducer<IDocker> = combineReducers({
   dockerHealth,
   images,
   containers,
-  info
+  info,
+  recentEvents
 });
 
 export default docker;

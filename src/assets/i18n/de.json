@@ -26,6 +26,9 @@
     "selectColumns": "Spalten auswählen"
   },
   "error": {},
+  "recentEvents": {
+    "nav": "Ereignisse"
+  },
   "images": {
     "createContainer": "Container erstellen",
     "derivedContainers": "Abgeleitete Container",

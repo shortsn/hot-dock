@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -7,7 +7,6 @@ import { replayActionMain, forwardToRenderer } from '../ipc/redux/main';
 import { createDockerMiddleware } from './docker/middleware';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 
-import data from '../app/store/data/reducer';
 import session from '../app/store/session/reducer';
 import { createElectronApiMiddleware } from './api/middleware';
 
@@ -22,7 +21,6 @@ try {
 }
 
 const rootReducer = combineReducers({
-  data,
   session
 });
 

@@ -2,7 +2,7 @@
 
 <clr-datagrid *ngIf="queryParams$ | async as queryParams">
 
-  <clr-dg-column [clrDgField]="'id'">
+  <clr-dg-column [clrDgField]="'containerInfo.Id'" [clrFilterValue]="queryParams?.filterByContainerId">
     <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
   </clr-dg-column>
   <clr-dg-column [clrDgField]="'names'">
@@ -33,7 +33,7 @@
       <button class="action-item" (click)="removeDockerContainer(container)">{{ 'containers.remove' | translate }}</button>
     </clr-dg-action-overflow>
 
-    <clr-dg-cell>{{ container.id }}</clr-dg-cell>
+    <clr-dg-cell>{{ container.containerInfo.Id | shortHash }}</clr-dg-cell>
     <clr-dg-cell>{{ container.names }}</clr-dg-cell>
     <clr-dg-cell>
       <a routerLink="/info/images" [queryParams]="{ filterById: container.containerInfo.ImageID }">

@@ -28,6 +28,9 @@
   "error": {
     "DOCKER_REMOVE_IMAGE_FAILED": "{{ json.message }}"
   },
+  "recentEvents": {
+    "nav": "Events"
+  },
   "images": {
     "createContainer": "Create container",
     "derivedContainers": "Derived containers",

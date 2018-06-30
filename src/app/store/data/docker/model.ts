@@ -10,7 +10,20 @@ export interface IDocker {
   dockerHealth: DockerHealth;
   images: ImageInfo[];
   containers: ContainerInfo[];
+  recentEvents: DockerEvent[];
   info: DockerSystemInfo;
+}
+
+export interface DockerEvent {
+  time: number;
+  Type: string;
+  Action: string;
+  Actor: {
+    ID: string;
+    Attributes: {
+      name: string;
+    };
+  };
 }
 
 export interface DockerSystemInfo {
@@ -51,11 +64,9 @@ export class DockerImage {
 export type ContainerState = 'created' | 'restarting' | 'running' | 'paused' | 'exited';
 
 export class DockerContainer {
-  public readonly id: string;
   public readonly names: string[];
 
   constructor(public containerInfo: ContainerInfo) {
-    this.id = containerInfo.Id.substring(0, 12);
     this.names = containerInfo.Names.map(name => name.substring(1));
   }
 }

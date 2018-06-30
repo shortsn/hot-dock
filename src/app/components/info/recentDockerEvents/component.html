@@ -1,0 +1,55 @@
+<h1>{{ 'recentEvents.nav' | translate }}</h1>
+
+<clr-datagrid *ngIf="queryParams$ | async as queryParams">
+
+  <clr-dg-column [clrDgField]="'time'" [clrDgSortOrder]="descSort">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Time</ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column [clrDgField]="'Action'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Action</ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column [clrDgField]="'Type'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Type</ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column [clrDgField]="'Actor.ID'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">Id</ng-container>
+  </clr-dg-column>
+
+  <clr-dg-placeholder>{{ 'datagrid.noEntries' | translate }}</clr-dg-placeholder>
+
+  <clr-dg-row *clrDgItems="let dockerEvent of dockerEvents$ | async">
+
+    <clr-dg-cell>{{ dockerEvent.time * 1000 | date:'HH:mm:ss' }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerEvent.Action }}</clr-dg-cell>
+    <clr-dg-cell>{{ dockerEvent.Type }}</clr-dg-cell>
+    <clr-dg-cell>
+        <ng-container [ngSwitch]="dockerEvent.Type">
+          <a *ngSwitchCase="'container'" routerLink="/info/containers" [queryParams]="{ filterByContainerId: dockerEvent.Actor.ID }">
+            {{ dockerEvent.Actor.ID | shortHash }}
+          </a>
+          <ng-container *ngSwitchDefault>{{ dockerEvent.Actor.ID | shortHash }}</ng-container>
+        </ng-container>
+
+
+    </clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-column-toggle>
+      <clr-dg-column-toggle-title>{{ 'datagrid.selectColumns' | translate }}</clr-dg-column-toggle-title>
+      <clr-dg-column-toggle-button clrType="selectAll">{{ 'datagrid.selectAll' | translate }}</clr-dg-column-toggle-button>
+      <clr-dg-column-toggle-button clrType="ok">
+        <clr-icon shape="check"></clr-icon>
+      </clr-dg-column-toggle-button>
+    </clr-dg-column-toggle>
+
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      {{ 'datagrid.pagination' | translate: { first: pagination.firstItem +1, last: pagination.lastItem + 1, total: pagination.totalItems
+      } }}
+    </clr-dg-pagination>
+  </clr-dg-footer><
+
+</clr-datagrid>
