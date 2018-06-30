@@ -1,7 +1,13 @@
 
 export enum Language {
-  'en',
-  'de',
+  en = 'en',
+  de = 'de',
+}
+
+export enum DockerHealth {
+  UNKNOWN,
+  HEALTHY,
+  UNHEALTHY
 }
 
 export interface ISession {
@@ -10,4 +16,5 @@ export interface ISession {
     environment: string;
   };
   language: Language;
+  dockerHealth: DockerHealth;
 }

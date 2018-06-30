@@ -4,7 +4,7 @@ import { Action } from 'redux';
 import { TranslateService } from '@ngx-translate/core';
 
 import { filter, tap } from 'rxjs/operators';
-import { LanguageActions } from './actions';
+import { SessionActions } from './actions';
 
 @Injectable()
 export class SessionEpics {
@@ -13,8 +13,8 @@ export class SessionEpics {
   setLanguage = (action$: ActionsObservable<Action>) =>
     action$
       .pipe(
-        filter(LanguageActions.is.SET_LANGUAGE),
-        tap(action => this.translate.use(action.payload.toString())),
+        filter(SessionActions.is.SET_LANGUAGE),
+        tap(action => this.translate.use(action.payload)),
         filter(_ => false),
       )
 }

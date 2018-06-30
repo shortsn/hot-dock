@@ -7,7 +7,7 @@ import {
   sideNavSelector, hasSideNavSelector, alertsSelector, hasAlertsSelector
 } from '../../../store/controls/layout/selectors';
 import { LayoutActions } from '../../../store/controls/layout/actions';
-import { isDockerHealthySelector } from '../../../store/data/docker/selectors';
+import { isDockerHealthySelector } from '../../../store/session/selectors';
 
 @Component({
   templateUrl: './component.html',

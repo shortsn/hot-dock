@@ -11,6 +11,7 @@ import { IAlert, IAlertAction } from './model';
 
 import { v4 as uuid } from 'uuid';
 import { DockerActions } from '../../data/docker/actions';
+import { SessionActions } from '../../session/actions';
 
 @Injectable()
 export class LayoutEpics {
@@ -31,7 +32,7 @@ export class LayoutEpics {
         action =>
           action.payload.length > 0
             ? action$.pipe(
-                filter(a => DockerActions.is.DOCKER_EVENT(a) || DockerActions.is.DOCKER_SET_HEALTHY(a)),
+                filter(a => DockerActions.is.DOCKER_EVENT(a) || SessionActions.is.DOCKER_SET_HEALTHY(a)),
                 flatMap(_ => of(...action.payload)),
                 auditTime(100),
                 startWith(...action.payload)

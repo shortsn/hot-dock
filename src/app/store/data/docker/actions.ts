@@ -1,6 +1,6 @@
 import { unionize, ofType } from 'unionize';
 import { ImageInfo, ContainerInfo } from 'dockerode';
-import { DockerHealth, DockerSystemInfo, DockerEvent } from './model';
+import { DockerSystemInfo, DockerEvent } from './model';
 
 export const DockerActions = unionize({
 
@@ -46,8 +46,6 @@ export const DockerActions = unionize({
 
   DOCKER_CREATE_CONTAINER: ofType<{ imageId: string }>(),
 
-  DOCKER_SET_HEALTHY: ofType(),
-  DOCKER_SET_UNHEALTHY: ofType(),
   DOCKER_EVENT: ofType<DockerEvent>(),
 
 }, 'type', 'payload');

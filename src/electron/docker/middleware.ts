@@ -7,9 +7,10 @@ import { ErrorAction } from '../../ipc/redux/isAction';
 
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { tap, map, last, first, takeUntil, publish, refCount, distinctUntilChanged } from 'rxjs/operators';
-import { DockerHealth } from '../../app/store/data/docker/model';
+import { DockerHealth } from '../../app/store/session/model';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { SessionActions } from '../../app/store/session/actions';
 
 const willQuit$ = fromEvent(app, 'will-quit').pipe(
   first(),
@@ -50,7 +51,7 @@ const monitorDockerEvents = async (store: { dispatch: (action) => any; }, docker
 
   dockerHealth$.pipe(
     distinctUntilChanged(),
-    map(health => health === DockerHealth.HEALTHY ? DockerActions.DOCKER_SET_HEALTHY({}) : DockerActions.DOCKER_SET_UNHEALTHY({})),
+    map(health => health === DockerHealth.HEALTHY ? SessionActions.DOCKER_SET_HEALTHY({}) : SessionActions.DOCKER_SET_UNHEALTHY({})),
     tap(action => store.dispatch(action)),
     takeUntil(willQuit$)
   )

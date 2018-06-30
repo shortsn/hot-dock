@@ -1,5 +1,5 @@
 import { IAppState } from '../../model';
-import { DockerImage, DockerHealth, DockerContainer } from './model';
+import { DockerImage, DockerContainer } from './model';
 
 export const dockerSelector = (state: IAppState) => state.data.docker;
 
@@ -12,9 +12,6 @@ export const dockerRecentEventsSelector = (state: IAppState) => dockerSelector(s
 export const dockerContainerInfosSelector = (state: IAppState) => dockerSelector(state).containers;
 export const dockerContainerSelector = (state: IAppState) =>
   dockerContainerInfosSelector(state).map(info => new DockerContainer(info));
-
-export const dockerHealthSelector = (state: IAppState) => dockerSelector(state).dockerHealth;
-export const isDockerHealthySelector = (state: IAppState) => dockerHealthSelector(state) === DockerHealth.HEALTHY;
 
 export const dockerInfoSelector = (state: IAppState) => dockerSelector(state).info;
 

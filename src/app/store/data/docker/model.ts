@@ -1,13 +1,6 @@
 import { ImageInfo, ContainerInfo } from 'dockerode';
 
-export enum DockerHealth {
-  UNKNOWN,
-  HEALTHY,
-  UNHEALTHY
-}
-
 export interface IDocker {
-  dockerHealth: DockerHealth;
   images: ImageInfo[];
   containers: ContainerInfo[];
   recentEvents: DockerEvent[];

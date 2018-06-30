@@ -24,6 +24,7 @@ import { initializeStore } from '../environments/environment';
 
 import { CoreModule } from './components/core/module';
 import { LayoutEpics } from './store/controls/layout/epics';
+import { languageSelector } from './store/session/selectors';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -71,7 +72,7 @@ export class AppModule {
 
     const initialState = initializeStore(ngRedux, rootReducer, middlewares, []);
 
-    translate.setDefaultLang(initialState.session.language.toString());
+    translate.setDefaultLang(languageSelector(initialState));
     ngReduxRouter.initialize(routerSelector);
   }
 }

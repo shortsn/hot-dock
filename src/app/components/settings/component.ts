@@ -1,10 +1,10 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Language } from '../../store/session/model';
-import { LanguageActions } from '../../store/session/actions';
+import { SessionActions } from '../../store/session/actions';
 import { dispatch, select } from '@angular-redux/store';
 import { LayoutActions } from '../../store/controls/layout/actions';
-import { languageSelector } from '../../store/session/selectors';
 import { Observable } from 'rxjs/Observable';
+import { languageSelector } from '../../store/session/selectors';
 
 @Component({
   templateUrl: './component.html',
@@ -16,7 +16,7 @@ export class SettingsComponent implements OnInit {
 
   @select(languageSelector) readonly currentLanguage$: Observable<Language>;
 
-  @dispatch() readonly changeLanguage = (language: Language) => LanguageActions.SET_LANGUAGE(language);
+  @dispatch() readonly changeLanguage = (language: Language) => SessionActions.SET_LANGUAGE(language);
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({ sideNav: [], subNav: [] });
 
   @dispatch() readonly unSubscribeData = () => LayoutActions.DISPATCH_ON_REFRESH([]);
