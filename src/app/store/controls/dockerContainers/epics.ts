@@ -16,7 +16,7 @@ export class DockerContainersComponentEpics {
         action =>
           action.payload.startsWith('/info/containers')
             ? action$.pipe(
-                filter(DockerActions.is.DOCKER_EVENT),
+                filter(a => DockerActions.is.DOCKER_EVENT(a) || DockerActions.is.DOCKER_SET_HEALTHY(a)),
                 map(_ => DockerActions.DOCKER_FETCH_CONTAINERS({})),
                 auditTime(100),
                 startWith(DockerActions.DOCKER_FETCH_CONTAINERS({}))

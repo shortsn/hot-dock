@@ -46,7 +46,8 @@ export const DockerActions = unionize({
 
   DOCKER_CREATE_CONTAINER: ofType<{ imageId: string }>(),
 
-  DOCKER_SET_HEALTH: ofType<DockerHealth>(),
+  DOCKER_SET_HEALTHY: ofType(),
+  DOCKER_SET_UNHEALTHY: ofType(),
   DOCKER_EVENT: ofType<any>(),
 
 }, 'type', 'payload');

@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
 
   @select(dockerInfoSelector) readonly dockerSystemInfo$: Observable<DockerSystemInfo>;
 
-  @dispatch() readonly fetchDockerInfo = () => DockerActions.DOCKER_FETCH_SYSTEM_INFO({});
   @dispatch() readonly setNavItems = () => LayoutActions.SET_NAV({
     subNav,
     sideNav: []
@@ -23,7 +22,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.setNavItems();
-    this.fetchDockerInfo();
   }
 
 }

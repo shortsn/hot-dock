@@ -50,7 +50,7 @@ const monitorDockerEvents = async (store: { dispatch: (action) => any; }, docker
 
   dockerHealth$.pipe(
     distinctUntilChanged(),
-    map(DockerActions.DOCKER_SET_HEALTH),
+    map(health => health === DockerHealth.HEALTHY ? DockerActions.DOCKER_SET_HEALTHY({}) : DockerActions.DOCKER_SET_UNHEALTHY({})),
     tap(action => store.dispatch(action)),
     takeUntil(willQuit$)
   )

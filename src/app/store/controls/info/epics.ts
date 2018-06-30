@@ -7,19 +7,19 @@ import { isUpdateLocationAction } from '../../location/model';
 import { empty } from 'rxjs/observable/empty';
 
 @Injectable()
-export class DockerImagesComponentEpics {
+export class DashboardComponentEpics {
 
-  loadImages = (action$: ActionsObservable<any>) =>
+  loadInfo = (action$: ActionsObservable<any>) =>
     action$.pipe(
       filter(action => isUpdateLocationAction(action)),
       switchMap(
         action =>
-          action.payload.startsWith('/info/images')
+          action.payload.startsWith('/info/dashboard')
             ? action$.pipe(
                 filter(a => DockerActions.is.DOCKER_EVENT(a) || DockerActions.is.DOCKER_SET_HEALTHY(a)),
-                map(_ => DockerActions.DOCKER_FETCH_IMAGES({})),
+                map(_ => DockerActions.DOCKER_FETCH_SYSTEM_INFO({})),
                 auditTime(100),
-                startWith(DockerActions.DOCKER_FETCH_IMAGES({}))
+                startWith(DockerActions.DOCKER_FETCH_SYSTEM_INFO({}))
               )
             : empty()
       )
