@@ -7,6 +7,7 @@ import { DockerContainersComponent } from './dockerContainers/component';
 import { ShortHashPipe } from './shortHashId/pipe';
 import { DashboardComponent } from './dashboard/component';
 import { RecentDockerEventsComponent } from './recentDockerEvents/component';
+import { ContainerModule } from '../container/module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RecentDockerEventsComponent } from './recentDockerEvents/component';
   ],
   imports: [
     CoreModule,
+    ContainerModule,
     InfoRoutingModule
   ]
 })
