@@ -9,6 +9,12 @@ images
 containers
   - create wizard
 
+secrets
+volumes
+networks
+
+system df
+
 local registry
 
   - create & setup
