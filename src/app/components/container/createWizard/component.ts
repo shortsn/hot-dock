@@ -6,6 +6,10 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClrWizard } from '@clr/angular';
+import { Observable } from 'rxjs/Observable';
+import { QueryParams } from './model';
+import { dispatch } from '@angular-redux/store';
+import { DockerActions } from '../../../store/data/docker/actions';
 
 @Component({
   templateUrl: './component.html',
@@ -13,20 +17,23 @@ import { ClrWizard } from '@clr/angular';
 })
 export class CreateContainerWizardComponent implements OnInit {
 
+  readonly queryParams$: Observable<QueryParams>;
+
   @ViewChild('wizardmd') wizard: ClrWizard;
+
+  @dispatch() readonly createDockerContainer = (imageId: string) =>
+    DockerActions.DOCKER_CREATE_CONTAINER({ imageId })
 
   public get open(): boolean {
     return true;
   }
   public set open(value: boolean) {
     if (value) { return; }
-    this._router.navigate(['.']);
+    this._router.navigate(['.', { outlets: { modal: null } }], { relativeTo: this._route.parent });
   }
 
-  // readonly queryParams$: Observable<QueryParams>;
-
-  constructor(private _router: Router) {
-    // this.queryParams$ = route.queryParams;
+  constructor(private _router: Router, private _route: ActivatedRoute) {
+    this.queryParams$ = _route.queryParams;
   }
 
   ngOnInit() {

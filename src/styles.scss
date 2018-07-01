@@ -4,6 +4,8 @@ html, body {
   padding: 0;
 
   height: 100%;
+  user-select: none;
+  cursor: default;
 
   button.active,
   button:focus {

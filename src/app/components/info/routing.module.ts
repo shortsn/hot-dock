@@ -15,7 +15,13 @@ const routes: Routes = [
       { path: 'create-container', component: CreateContainerWizardComponent, outlet: 'modal' }
     ]
   },
-  { path: 'images', component: DockerImagesComponent },
+  {
+    path: 'images',
+    children: [
+      { path: '', component: DockerImagesComponent },
+      { path: 'create-container', component: CreateContainerWizardComponent, outlet: 'modal' }
+    ]
+  },
   { path: 'containers', component: DockerContainersComponent },
   { path: 'recentEvents', component: RecentDockerEventsComponent },
 ];
