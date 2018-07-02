@@ -8,6 +8,7 @@ import { ShapeHotDock } from '../icons/hot-dock';
 import { DockerErrorComponent } from './dockerError/component';
 import { ExternalHrefDirective } from './externalHref/directive';
 import { LayoutComponent } from './layout/component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import '@clr/icons/shapes/technology-shapes';
 import '@clr/icons/shapes/essential-shapes';
@@ -29,7 +30,9 @@ ClarityIcons.add({
     CommonModule,
     ClarityModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ExternalHrefDirective,
@@ -37,7 +40,9 @@ ClarityIcons.add({
     CommonModule,
     ClarityModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CoreModule { }

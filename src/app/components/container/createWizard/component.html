@@ -1,19 +1,29 @@
 <clr-wizard #wizard [(clrWizardOpen)]="open" clrWizardSize="lg"
-  (clrWizardOnFinish)="createDockerContainer(imageId)">
-  <clr-wizard-title>Medium-Sized Wizard</clr-wizard-title>
+  (clrWizardOnFinish)="createDockerContainer()">
+  <clr-wizard-title>Create Container</clr-wizard-title>
 
   <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
   <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
   <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
   <clr-wizard-button [type]="'finish'">Create</clr-wizard-button>
 
-  <clr-wizard-page #image>
-      <ng-template clrPageTitle>Select image</ng-template>
-      {{ imageId | json }}
-  </clr-wizard-page>
+  <clr-wizard-page #options [clrWizardPageNextDisabled]="!containerOptions.valid">
+      <ng-template clrPageTitle>Options</ng-template>
+      <form class="compact" [formGroup]="containerOptions">
+        <section class="form-block">
 
-  <clr-wizard-page #parameters>
-    <ng-template clrPageTitle>Parameters</ng-template>
+          <div class="form-group row">
+              <div class="col-md-3">
+                <label class="required" for="Image">Image</label>
+              </div>
+              <div class="col-md-9">
+                <input class="form-control" type="text" formControlName="Image" placeholder="Enter value here">
+              </div>
+          </div>
+
+        </section>
+
+    </form>
   </clr-wizard-page>
 
 </clr-wizard>

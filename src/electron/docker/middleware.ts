@@ -113,7 +113,7 @@ export const createDockerMiddleware: (options?: Docker.DockerOptions) => Middlew
             .remove()
             .then(_ => store.dispatch(DockerActions.DOCKER_REMOVE_IMAGE_SUCCESS(imageInfo))),
 
-        DOCKER_CREATE_CONTAINER: ({ imageId }) => docker.createContainer({ Image: imageId }),
+        DOCKER_CREATE_CONTAINER: createOptions => docker.createContainer(createOptions),
 
         DOCKER_START_CONTAINER: containerId =>
           docker

@@ -1,5 +1,5 @@
 import { unionize, ofType } from 'unionize';
-import { ImageInfo, ContainerInfo } from 'dockerode';
+import { ImageInfo, ContainerInfo, ContainerCreateOptions } from 'dockerode';
 import { DockerSystemInfo, DockerEvent } from './model';
 
 export const DockerActions = unionize({
@@ -44,7 +44,7 @@ export const DockerActions = unionize({
   DOCKER_FETCH_SYSTEM_INFO_FAILED: ofType<Error>(),
   DOCKER_UPDATE_SYSTEM_INFO: ofType<DockerSystemInfo>(),
 
-  DOCKER_CREATE_CONTAINER: ofType<{ imageId: string }>(),
+  DOCKER_CREATE_CONTAINER: ofType<ContainerCreateOptions>(),
 
   DOCKER_EVENT: ofType<DockerEvent>(),
 

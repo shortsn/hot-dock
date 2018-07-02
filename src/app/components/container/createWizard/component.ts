@@ -4,9 +4,9 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClrWizard, ClrWizardPage } from '@clr/angular';
-import { Observable } from 'rxjs/Observable';
 import { QueryParams } from './model';
 import { dispatch } from '@angular-redux/store';
 import { DockerActions } from '../../../store/data/docker/actions';
@@ -17,14 +17,13 @@ import { DockerActions } from '../../../store/data/docker/actions';
 })
 export class CreateContainerWizardComponent implements OnInit {
 
-  imageId: string;
+  readonly containerOptions: FormGroup;
 
   @ViewChild('wizard') wizard: ClrWizard;
-  @ViewChild('image') image: ClrWizardPage;
-  @ViewChild('parameters') parameters: ClrWizardPage;
+  @ViewChild('options') optionsPage: ClrWizardPage;
 
-  @dispatch() readonly createDockerContainer = (imageId: string) =>
-    DockerActions.DOCKER_CREATE_CONTAINER({ imageId })
+  @dispatch() readonly createDockerContainer = () =>
+    DockerActions.DOCKER_CREATE_CONTAINER(this.containerOptions.value)
 
   public get open(): boolean {
     return true;
@@ -34,15 +33,15 @@ export class CreateContainerWizardComponent implements OnInit {
     this._router.navigate(['.', { outlets: { modal: null } }], { relativeTo: this._route.parent });
   }
 
-  constructor(private _router: Router, private _route: ActivatedRoute) {
+  constructor(private _router: Router, private _route: ActivatedRoute, formBuilder: FormBuilder) {
     const queryParams = _route.snapshot.queryParams as QueryParams;
-    this.imageId = queryParams.imageId;
+
+    this.containerOptions = formBuilder.group({
+      Image: [queryParams.imageId, Validators.required ],
+    });
   }
 
   ngOnInit() {
-    if (this.imageId !== undefined) {
-      this.parameters.makeCurrent();
-    }
   }
 
 }
