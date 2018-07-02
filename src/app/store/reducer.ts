@@ -1,3 +1,4 @@
+import {composeReducers, defaultFormReducer} from '@angular-redux/form';
 import { combineReducers, Reducer } from 'redux';
 import session from './session/reducer';
 import location from './location/reducer';
@@ -12,4 +13,8 @@ const rootReducer: Reducer<IAppState> = combineReducers({
   session
 });
 
-export default rootReducer;
+
+export default composeReducers(
+  defaultFormReducer(),
+  rootReducer
+);

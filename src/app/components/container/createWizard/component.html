@@ -1,5 +1,5 @@
 <clr-wizard #wizard [(clrWizardOpen)]="open" clrWizardSize="lg"
-  (clrWizardOnFinish)="createDockerContainer()">
+  (clrWizardOnFinish)="createDockerContainer(containerOptions.value)">
   <clr-wizard-title>Create Container</clr-wizard-title>
 
   <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
@@ -7,9 +7,9 @@
   <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
   <clr-wizard-button [type]="'finish'">Create</clr-wizard-button>
 
-  <clr-wizard-page #options [clrWizardPageNextDisabled]="!containerOptions.valid">
+  <clr-wizard-page #options [clrWizardPageNextDisabled]="!containerOptions.valid" >
       <ng-template clrPageTitle>Options</ng-template>
-      <form class="compact" [formGroup]="containerOptions">
+      <form class="compact" [connect]="statePath" [formGroup]="containerOptions">
         <section class="form-block">
 
           <div class="form-group row">

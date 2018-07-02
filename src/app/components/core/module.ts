@@ -9,6 +9,7 @@ import { DockerErrorComponent } from './dockerError/component';
 import { ExternalHrefDirective } from './externalHref/directive';
 import { LayoutComponent } from './layout/component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgReduxFormConnectModule } from '@angular-redux/form';
 
 import '@clr/icons/shapes/technology-shapes';
 import '@clr/icons/shapes/essential-shapes';
@@ -32,7 +33,8 @@ ClarityIcons.add({
     TranslateModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgReduxFormConnectModule
   ],
   exports: [
     ExternalHrefDirective,
@@ -42,7 +44,8 @@ ClarityIcons.add({
     TranslateModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgReduxFormConnectModule
   ]
 })
 export class CoreModule { }

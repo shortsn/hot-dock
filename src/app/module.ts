@@ -14,9 +14,12 @@ import { AppComponent } from './component';
 
 // Redux
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
+import { NgReduxFormModule } from '@angular-redux/form';
+
 import { IAppState } from './store/model';
 import rootReducer from './store/reducer';
-import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
+
 import { routerSelector } from './store/location/selectors';
 import { SessionEpics } from './store/session/epics';
 import { createEpicMiddleware } from 'redux-observable';
@@ -47,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    NgReduxFormModule,
     NgReduxModule,
     NgReduxRouterModule.forRoot()
   ],
